@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>偏移出来固定宽度的两栏在自适应宽度的中栏后面</title>
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	padding:10px;
+}
+#wrapper{
+	width:100%;
+}
+#header{
+	height:120px;
+	background-color:#26566E;
+}
+#main{
+	margin:0 200px 0 150px;
+}
+#content{
+	position:relative;
+	float:left;
+	width:100%;
+	background-color:#CCC;
+}
+#extrabar{
+	position:relative;
+	left:-150px;
+	float:left;
+	width:150px;
+	margin:0 0 0 -100%;
+	background-color:#999;
+}
+
+#sidebar{
+	float:left;
+	width:200px;
+	margin:0 -200px 0 0;
+	background-color:#8FAEBE;
+}
+#footer{
+	clear:both;
+    height:80px;
+    background-color:#688B9A;
+}
+* html #extrabar{
+	left:200px;
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+	<div id="header">页头部分</div>
+	<div id="main">
+		<div id="content">主体的内容部分</div>
+		<div id="extrabar">主体的额外部分</div>
+		<div id="sidebar">主体的侧栏部分</div>
+		
+	</div>
+	<div id="footer">页底部分</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

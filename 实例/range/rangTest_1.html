@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>选区的测试</title>
+<script type="text/javascript" src="textRange.js"></script>
+</head>
+<body>
+
+<table cellpadding="0" cellspacing="0" style="border:1px solid #406c99;">
+	<tbody>
+		<tr>
+			<td>start:<input type="text" id="start" /></td>
+			<td>end:<input type="text" id="end" /></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<textarea id="txt" style="width:400px; height:100px;"  onkeyup="savePos(this);"  onmouseup="savePos(this);" onfocus="savePos(this);"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="text" id="insTxt" /></td>
+			<td><input type="button" onclick="addText();" value="addText" /></td>
+		</tr>
+	</tbody>
+</table>
+
+
+<div>
+	<button onclick="setSelection();">选中选区</button>
+	<button onclick="setCursorPos();">设置光标位置</button>
+</div>
+
+<div style="border:1px solid #999; width:800px; margin-top:30px;">
+	选区之前的内容：<input type="text" id="beforeTxt"	style="width:600px;"/>
+</div>
+
+<script type="text/javascript">
+	function $(id) {
+		return typeof id === "string" ? document.getElementById(id) : id;
+	}
+	
+	//添加内容
+	function addText() {
+		var elem = $("txt");
+		var range = elem.getAttribute('range') ? elem.getAttribute('range').split("|") : [0, 0];
+		var str_1 = elem.value.slice(0, range[0]);
+		var str_2 = elem.value.slice(range[1]);
+		
+		elem.value = str_1 + $("insTxt").value + str_2;
+	}
+	
+	//保存选区
+	function savePos(elem) {
+		var range = TextRange.getRange(elem);
+		
+		$("start").value = range[0];
+		$("end").value = range[1];
+		
+		var rangeBeforeTxt = TextRange.selectionBefore(elem);
+		$("beforeTxt").value = rangeBeforeTxt.replace(/\n/g, '--');
+		
+		elem.setAttribute("range", range.join("|"));
+	}
+	
+	//设置选区
+	function setSelection() {
+		var start = $("start").value,
+			end = $("end").value;
+			
+		TextRange.selectText($("txt"), start, end);
+		
+		TextRange.unCoverInsertText($("txt"), '#===#', {
+            start: start,
+            end: end
+        })
+	}
+	
+	function setCursorPos() {
+		TextRange.setCursor($("txt"), 3, 5);//索引值、长度
+	}
+</script>
+
+</body>
+</html>

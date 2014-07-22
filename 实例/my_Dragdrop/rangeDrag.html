@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>DragTest</title>
+	<script>
+//	function test()
+//	{
+//		var bav = new core.web.widgets.adorners.behaviors.DragBehavior();
+//		bav.addKnobs($$("test"));
+//		bav.setRangeXBy(0,400);
+//		bav.setRangeYBy(0,400);
+//		bav.active();
+//	}
+	</script>
+</head>
+<body>
+	
+<div style="margin-left:100px;width:500px;height:500px;border:solid 1px #3377cc;">
+	<div id ="test" style="border: solid 1px #3377cc; width:100px; height:100px;position:absolute;"><div style="width:100%;height:100%;background:#3377CC">abc</div></div>
+</div>
+
+<script type='text/javascript' src='js/core.js'></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript" src="js/dragdrop.js"></script>
+
+<script type='text/javascript'>
+	var a, b;
+	
+	var bav = GD.ui.DragDrop.registerDragdropHandler("test", "", {
+		x : 100,
+		y : 100
+	});
+	bav.onStartDrag = function(e, handlerId, dragCache, options) {
+		document.title = "startDrag";
+		
+		a = (parseInt(dragCache.dragTarget.clientWidth, 10) - e.clientX);
+		b = (parseInt(dragCache.dragTarget.clientHeight, 10) - e.clientY);
+		
+		dragCache.dragTarget.style.cursor = "nw-resize";	
+	}
+	bav.onDoDrag = function(e, handlerId, dragCache, options) {
+		document.title = "doDarg";
+		
+		var dragTarget = dragCache.dragTarget;
+		dragTarget.style.left = dragCache.xy[0] + "px";
+		dragTarget.style.top = dragCache.xy[1] + "px";
+		
+		var x = Math.max(1,e.clientX + a);
+		var y = Math.max(2, e.clientY + b);
+		dragTarget.style.width = x + "px";
+		dragTarget.style.height = y + "px";
+	}
+	bav.onEndDrag = function(e, handlerId, dragCache, options) {
+		document.title = "endDarg";
+		dragCache.dragTarget.style.cursor = "default";
+	}
+</script>
+
+</body>
+</html>

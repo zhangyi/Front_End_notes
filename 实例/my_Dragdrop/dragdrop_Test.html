@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>拖拽类的测试例子</title>
+		<script type="text/javascript" src="js/core.js"></script>
+		<script type="text/javascript">
+			GD.include(["other","dragdrop"]);
+		</script>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.cellBorder {height:99px;border-bottom:1px solid #406c99;width:100%;}
+		</style>
+	</head>
+	<body>
+		<div style="">
+			<input type="button" value="禁止拖放" id="abc" />
+			<input type="button" value="设置为拖放" id="abcd" style="margin-left:20px;" />
+			
+			<div style="margin-left:50%;margin-top:20px;width:500px;height:500px;border:solid 1px #3377cc;" id="outerContainer">
+				<div id ="test" style="border: solid 5px #3377cc; width:100px; height:100px;position:absolute; z-index:100;">
+					<div style="width:100%;height:100%;background:#3377CC">
+						<span>这里是文字</span>
+						<a href="javascript:alert(1);">这里是链接</a>
+						<select>
+							<option>1</option>
+						</select>
+						<embed 
+						width="10" 
+						height="10" 
+						align="left" 
+						name="swfobj2" 
+						id="swfobj"
+						pluginspage="http://www.macromedia.com/go/getflashplayer" 
+						quality="high"
+						bgcolor="#000" 
+						allownetworking="internal" 
+						mediawrapchecked="true" 
+						src="http://flash.7k7k.com/fl_4/7k7k_gkzuohj.swf" 
+						type="application/x-shockwave-flash" 
+						splayername="SWF" 
+						tplayername="SWF">
+					</embed>
+					</div>
+				</div>
+			</div>
+		</div>
+		<select>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+		</select>
+		<div>
+			<div class="cellBorder"></div>
+			<div class="cellBorder"></div>
+			<div class="cellBorder"></div>
+			<div class="cellBorder"></div>
+			<div class="cellBorder"></div>
+			<div class="cellBorder"></div>			
+		</div>
+		
+		<div style="position:absolute;top:100px;left:100px;border:1px solid red;height:400px;width:400px;z-index:-1;"></div>
+		
+		<script type="text/javascript">
+			var _dragHandler;
+			
+			GD$("abc").onclick = function() {
+				GD.ui.DragDrop.unRegisterDragdropHandler("test");
+				_dragHandler = null;
+			};
+			
+			GD$("abcd").onclick= function() {
+				if(_dragHandler) return false;
+				_dragHandler = GD.ui.DragDrop.registerDragdropHandler("test", "test", {
+					range: [0, 100, 200, 500],
+					x:0,
+					y:0,
+					rangeElement : [document.documentElement, [1, 1, 1, 1], 0],
+					autoScroll : true,
+					ghostSize : [50, 20],
+					ignoreTagName : 'embed'/*,
+					ghost: true*/
+				});
+				_dragHandler.onStartDrag = function() {
+					var selectElems = document.getElementsByTagName("select");
+
+					for ( var i = 0, len = selectElems.length; i < len ; i++ )
+					{
+						//selectElems[i].style.visibility = 'hidden';
+					}
+//					document.title = "onStartDrag";
+				}
+				_dragHandler.onDoDrag = function() {
+//					document.title = "onDoDrag";
+				}
+				_dragHandler.onEndDrag = function() {
+
+					var selectElems = document.getElementsByTagName("select");
+
+					for ( var i = 0, len = selectElems.length; i < len ; i++ )
+					{
+						//selectElems[i].style.visibility = 'visible';
+					}
+
+//					document.title = "onEndDrag";
+				}				
+			}
+			GD$("abcd").onclick();
+		</script>
+	<div style='position:absolute; width:100%; height:100%; background-color:#000; filter:alpha(opacity=30); opacity:.3; top:0; left:0;'></div>	
+	</body>
+</html>

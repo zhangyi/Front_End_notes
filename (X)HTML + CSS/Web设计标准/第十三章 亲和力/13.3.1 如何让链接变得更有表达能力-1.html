@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>站外链接</title>
+<style type="text/css">
+a.external1 {
+    background: url("images/external.png") no-repeat center right ;
+    padding-right: 13px;
+}
+
+</style>
+</head>
+
+<body>
+<ul>
+	<li><a href="/labs/">我的实验室</a></li>
+	<li><a href="http://www.forest53.com/" class="external">老甘的小站</a></li>
+	<li><a href="http://www.sheneyou.com/" class="external">子乌的叶子</a></li>
+	<li><a href="http://www.andymao.com/" class="external">小毅的博客</a></li>
+</ul>
+<script type="text/javascript">
+function externallinks() {
+if (!document.getElementsByTagName) return;
+var anchors = document.getElementsByTagName("a");
+for (var i=0; i<anchors.length; i++) {
+   if (anchors[i].getAttribute("href")&&anchors[i].getAttribute("href",2).substr(0,7)=="http://"){
+     addClassName(anchors[i],"external1");
+	}
+}
+}
+
+function addClassName (element, sClassName){
+	if (!element.className){
+element.className=sClassName;
+}
+else{
+	element.className+=" "+ sClassName;
+}
+}
+externallinks()
+
+</script>
+
+</body>
+</html>

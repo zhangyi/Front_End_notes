@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>扩展链接</title>
+<style type="text/css">
+
+#tip{
+	position:absolute;
+	z-index:100;
+	border:1px #333 solid;
+	padding:4px;
+	background-color:#fff;
+  	filter:alpha(opacity:85);
+	opacity:0.85;
+	display:none;
+	font-size:12px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+#tip span{
+	display:block;
+	font-size:10px;
+}
+</style>
+<script type="text/javascript">
+function extendLinks() {
+	var tip = document.createElement("div");
+	tip.setAttribute('id','tip');
+	document.getElementsByTagName("body").item(0).appendChild(tip);
+	var anchors = document.getElementsByTagName("a");
+	var anchorsLen= anchors.length;
+	for(var i=0; i<anchorsLen; i++) {
+		if(anchors[i].getAttribute("title")){
+			anchors[i].onmouseover=anchors[i].onmouseout=anchors[i].onmousemove=toolTip;
+		}
+	}
+}
+
+function toolTip(){
+	var e=arguments[0];
+	var element=(e=e||window.event).target||e.srcElement; 
+	var toolTip=document.getElementById("tip");
+	switch(e.type){
+		case 'mouseover':
+			element.setAttribute("tip",element.getAttribute("title"));
+			//element.setAttribute("title","");
+			element.removeAttribute("title");
+			toolTip.innerHTML=element.getAttribute("tip")+"<span>"+element.href+"</span>" ;
+			toolTip.style.top=e.clientY+16+"px";
+			toolTip.style.left=e.clientX-5+"px";
+			toolTip.style.display="block";
+			break;
+		case 'mouseout':
+			element.setAttribute("title",element.getAttribute("tip"));
+			//element.setAttribute("tip","");
+			element.removeAttribute("tip");
+			toolTip.style.display="none";
+			break;
+		case 'mousemove':
+			toolTip.style.top=e.clientY+16+"px";
+			toolTip.style.left=e.clientX-5+"px";
+			break;
+	}
+}
+
+window.onload=extendLinks
+
+</script>
+</head>
+
+<body>
+<ul>
+	<li><a href="/lab/">我的实验室</a></li>
+	<li><a href="http://www.ucren.com" title="用JS写Windows桌面哦">臭蛋黄的桌面</a></li>
+	<li><a href="http://blog.sina.com.cn/qihontin" title="屏幕上的代码">泣红红的博客</a></li>
+	<li><a href="http://www.sheneyou.com/"  title="子乌的叶子">子乌的叶子</a></li>
+
+</ul>
+
+</body>
+</html>

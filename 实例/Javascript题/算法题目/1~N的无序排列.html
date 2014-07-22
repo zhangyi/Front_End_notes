@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+  <title>1~N无序的数按从大到小的顺序排列，时间O(n)，空间复杂度O(1)</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv='content-type' content='text/html;charset=utf-8' />
+ </head>
+
+ <body>
+<script type="text/javascript">
+var n = 10;
+var arr = [];
+for (var i = 1; i <= n ;i++ ) {
+	arr[i-1] = i;
+}
+arr.sort(function() {
+	return Math.random() > .5;
+});
+
+document.write('现在arr为：' + arr + '<br/>');
+
+
+var t = null;
+for (var i = 0; i < n ;i++ ) {
+	t = arr[arr[i]-1];
+	arr[arr[i]-1] = arr[i];
+	arr[i] = t;
+
+	document.write(t + '<br/>');
+}
+
+document.write('现在arr为：' + arr + '<br/>');
+</script>
+ </body>
+</html>

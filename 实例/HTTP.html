@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>The Definitive Guid -- HTTP</title>
+<meta http-equiv='content-type' content='text/html;charset=utf-8' />
+<style type='text/css'>
+	* {margin:0; padding:0;}
+	body {background-color:#fff; padding-bottom:30px;}
+
+	table {border-collapse:collapse; border:1px solid #ccc; margin:30px; display:block;}
+	th, td {border:1px solid #ddd; padding:5px;}
+	th {background-color:#dde; border:1px solid #ccc; color:#36c;}
+	tr:hover {background-color:#eee;}
+	caption {text-align:left; font-size:18px; padding: 5px 0;}
+
+	pre {margin:30px;}
+</style>
+</head>
+<body>
+
+<table>
+	<caption>Common media types</caption>
+	<thead>
+		<tr>
+			<th>Media type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>text/html</td>
+			<td>Entity body is an HTML document</td>
+		</tr>
+		<tr>
+			<td>text/plain</td>
+			<td>Entity body is a document in plain text</td>
+		</tr>
+		<tr>
+			<td>image/gif</td>
+			<td>Entity body is an image of type GIF</td>
+		</tr>
+		<tr>
+			<td>image/jpeg</td>
+			<td>Entity body is an image of type JPEG</td>
+		</tr>
+		<tr>
+			<td>audio/x-wav</td>
+			<td>Entity body contains WAV sound data</td>
+		</tr>
+		<tr>
+			<td>model/vrml</td>
+			<td>Entity body is a three-dimensional VRML model</td>
+		</tr>
+		<tr>
+			<td>application/vnd.ms-powerpoint</td>
+			<td>Entity body is a Microsoft PowerPoint presentation</td>
+		</tr>
+		<tr>
+			<td>multipart/byteranges</td>
+			<td>Entity body has multiple parts, each containing a different range (in bytes) of the full document </td>
+		</tr>
+		<tr>
+			<td>message/http</td>
+			<td>Entity body contains a complete HTTP message (see TRACE)</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<table>
+	<caption>Content-encoding tokens</caption>
+	<thead>
+		<tr>
+			<th>Content-encoding value</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>gzip</td>
+			<td>Indicates that the GNU zip encoding was applied to the entity.</td>
+		</tr>
+		<tr>
+			<td>compress</td>
+			<td>Indicates that the Unix file compression program has been run on the entity. </td>
+		</tr>
+		<tr>
+			<td>deflate</td>
+			<td>Indicates that the entity has been compressed into the zlib format</td>
+		</tr>
+		<tr>
+			<td>identity</td>
+			<td>Indicates that no encoding has been performed on the entity. When a Content-Encoding header is not present, this can be assumed. </td>
+		</tr>
+	</tbody>
+</table>
+
+
+<table>
+	<caption>Cache-Control header directives</caption>
+	<thead>
+		<tr>
+			<th>Directive</th>
+			<th>Message type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>no-cache</td>
+			<td>Request</td>
+			<td>Do not return a cached copy of the document without first revalidating it with the server.</td>
+		</tr>
+		<tr>
+			<td>no-store</td>
+			<td>Request</td>
+			<td>Do not return a cached copy of the document. Do not store the response from the server. </td>
+		</tr>
+		<tr>
+			<td>max-age</td>
+			<td>Request</td>
+			<td>The document in the cache must not be older than the specified age.</td>
+		</tr>
+		<tr>
+			<td>max-stale</td>
+			<td>Request</td>
+			<td>The document may be stale based on the server-specified expiration information, but it must not have been expired for longer than the value in this directive. </td>
+		</tr>
+		<tr>
+			<td>min-fresh</td>
+			<td>Request</td>
+			<td>The document's age must not be more than its age plus the specified amount. In other words, the response must be fresh for at least the specified amount of time.</td>
+		</tr>
+		<tr>
+			<td>no-transform</td>
+			<td>Request</td>
+			<td>The document must not be transformed before being sent.</td>
+		</tr>
+		<tr>
+			<td>only-if-cached</td>
+			<td>Request</td>
+			<td>Send the document only if it is in the cache, without contacting the origin server.</td>
+		</tr>
+		<tr>
+			<td>public</td>
+			<td>Response</td>
+			<td>Response may be cached by any cache.</td>
+		</tr>
+		<tr>
+			<td>private</td>
+			<td>Response</td>
+			<td>Response may be cached such that it can be accessed only by a single client. </td>
+		</tr>
+		<tr>
+			<td>no-cache</td>
+			<td>Response</td>
+			<td>If the directive is accompanied by a list of header fields, the content may be cached and served to clients, but the listed header fields must first be removed. If no header fields are specified, the cached copy must not be served without revalidation with the server. </td>
+		</tr>
+		<tr>
+			<td>no-store</td>
+			<td>Response</td>
+			<td>Response must not be cached.</td>
+		</tr>
+		<tr>
+			<td>no-transform</td>
+			<td>Response</td>
+			<td>Response must not be modified in any way before being served.</td>
+		</tr>
+		<tr>
+			<td>must-revalidate</td>
+			<td>Response</td>
+			<td>Response must be revalidated with the server before being served.</td>
+		</tr>
+		<tr>
+			<td>proxy-revalidate</td>
+			<td>Response</td>
+			<td>Shared caches must revalidate the response with the origin server before serving. This directive can be ignored by private caches. </td>
+		</tr>
+		<tr>
+			<td>max-age</td>
+			<td>Response</td>
+			<td>Specifies the maximum length of time the document can be cached and still considered fresh. </td>
+		</tr>
+		<tr>
+			<td>s-max-age</td>
+			<td>Response</td>
+			<td>Specifies the maximum age of the document as it applies to shared caches (overriding the max-age directive, if one is present). This directive can be ignored by private caches. </td>
+		</tr>
+	</tbody>
+</table>
+
+
+<table>
+	<caption>Conditional request types</caption>
+	<thead>
+		<tr>
+			<th>Request type</th>
+			<th>Validator</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>If-Modified-Since</td>
+			<td>Last-Modified</td>
+			<td>Send a copy of the resource if the version that was last modified at the time in your previous Last-Modified response header is no longer the latest one. </td>
+		</tr>
+		<tr>
+			<td>If-Unmodified-Since</td>
+			<td>Last-Modified</td>
+			<td>Send a copy of the resource only if it is the same as the version that was last modified at the time in your previous Last-Modified response header.</td>
+		</tr>
+		<tr>
+			<td>If-Match</td>
+			<td>ETag</td>
+			<td>Send a copy of the resource if its entity tag is the same as that of the one in your previous ETag response header. </td>
+		</tr>
+		<tr>
+			<td>If-None-Match</td>
+			<td>ETag</td>
+			<td>Send a copy of the resource if its entity tag is different from that of the one in your previous ETag response header</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<table>
+	<caption>Delta-encoding headers</caption>
+	<thead>
+		<tr>
+			<td>Header</td>
+			<td>Description</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>ETag</td>
+			<td>Unique identifier for each instance of a document. Sent by the server in the response; used by clients in subsequent requests in If-Match and If-None-Match headers. </td>
+		</tr>
+		<tr>
+			<td>If-None-Match</td>
+			<td>Request header sent by the client, asking the server for a document if and only if the client's version of the document is different from the server's. </td>
+		</tr>
+		<tr>
+			<td>A-IM</td>
+			<td>Client request header indicating types of instance manipulations accepted. </td>
+		</tr>
+		<tr>
+			<td>IM</td>
+			<td>Server response header specifying the type of instance manipulation applied to the response. This header is sent when the response code is 226 IM Used. </td>
+		</tr>
+		<tr>
+			<td>Delta-Base</td>
+			<td>Server response header that specifies the ETag of the base document used for generating the delta (should be the same as the ETag in the client request's If-None-Match header). </td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+<table>
+	<caption>IANA registered types of instance manipulations</caption>
+	<thead>
+		<tr>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>vcdiff</td>
+			<td>Delta using the vcdiff algorithm</td>
+		</tr>
+		<tr>
+			<td>diffe</td>
+			<td>Delta using the Unix diff -e command</td>
+		</tr>
+		<tr>
+			<td>gdiff</td>
+			<td>Delta using the gdiff algorithm</td>
+		</tr>
+		<tr>
+			<td>gzip</td>
+			<td>Compression using the gzip algorithm</td>
+		</tr>
+		<tr>
+			<td>deflate</td>
+			<td>Compression using the deflate algorithm</td>
+		</tr>
+		<tr>
+			<td>range</td>
+			<td>Used in a server response to indicate that the response is partial content as the result of a range selection</td>
+		</tr>
+		<tr>
+			<td>identity</td>
+			<td>Used in a client request's A-IM header to indicate that the client is willing to accept an identity instance manipulation</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+<table>
+	<caption>Accept headers</caption>
+	<thead>
+		<tr>
+			<th>Header</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Accept</td>
+			<td>Used to tell the server what media types are okay to send</td>
+		</tr>
+		<tr>
+			<td>Accept-Language</td>
+			<td>Used to tell the server what languages are okay to send</td>
+		</tr>
+		<tr>
+			<td>Accept-Charset</td>
+			<td>Used to tell the server what charsets are okay to send</td>
+		</tr>
+		<tr>
+			<td>Accept-Encoding</td>
+			<td>Used to tell the server what encodings are okay to send</td>
+		</tr>
+	</tbody>
+</table>
+
+<table>
+	<caption>Accept and matching document headers</caption>
+	<thead>
+		<tr>
+			<th>Accept header</th>
+			<th>Entity header</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Accept(ex:image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, image/png, */*)</td>
+			<td>Content-Type(ex:text/html)</td>
+		</tr>
+		<tr>
+			<td>Accept-Language(ex:zh-cn)</td>
+			<td>Content-Language(ex:fr, de, zh-cn)</td>
+		</tr>
+		<tr>
+			<td>Accept-Charset(ex:iso-8859-1, *, utf-8)</td>
+			<td>Content-Type(ex:;charet=utf-8)</td>
+		</tr>
+		<tr>
+			<td>Accept-Encoding(ex:gzip, deflate)</td>
+			<td>Content-Encoding(ex:gzip)</td>
+		</tr>
+	</tbody>
+</table>
+
+<pre>
+(Request-Line)	GET / HTTP/1.1
+Accept	image/gif, image/jpeg, image/pjpeg, image/pjpeg, application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, application/x-ms-application, application/x-ms-xbap, application/vnd.ms-xpsdocument, application/xaml+xml, */*
+Accept-Encoding	gzip, deflate
+Accept-Language	zh-cn
+Connection	Keep-Alive
+Cookie	PREF=ID=314fbae1650bde00:FF=2:LD=zh-CN:NW=1:TM=1320735923:LM=1320735923:S=oSSPDnEPbXYbWbsp
+Host	www.google.com.hk
+User-Agent	Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; QQDownload 677; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) ; InfoPath.2; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)
+
+
+(Status-Line)	HTTP/1.1 200 OK
+Cache-Control	private, max-age=0
+Content-Encoding	gzip
+Content-Type	text/html; charset=UTF-8
+Date	Tue, 08 Nov 2011 07:05:23 GMT
+Expires	-1
+Server	gws
+Set-Cookie	NID=52=xxxxxxxxxxxxxx; expires=Wed, 09-May-2012 07:05:23 GMT; path=/; domain=.google.com.hk; HttpOnly
+Transfer-Encoding	chunked
+X-Frame-Options	SAMEORIGIN
+X-XSS-Protection	1; mode=block
+</pre>
+
+<pre>
+(Request-Line)	GET / HTTP/1.1
+Accept	*/*
+Accept-Encoding	gzip, deflate
+Accept-Language	zh-cn
+Connection	Keep-Alive
+Cookie	BAIDUID=CEDBBF526CC8742529C8FDDA98EA859F:FG=1
+Host	www.baidu.com
+User-Agent	Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; QQDownload 677; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) ; InfoPath.2; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)
+
+
+(Status-Line)	HTTP/1.1 200 OK
+Cache-Control	private
+Connection	Keep-Alive
+Content-Encoding	gzip
+Content-Length	3092
+Content-Type	text/html;charset=gb2312
+Date	Tue, 08 Nov 2011 07:07:31 GMT
+Expires	Tue, 08 Nov 2011 07:07:31 GMT
+Server	BWS/1.0
+</pre>
+
+
+
+
+</body>
+</html>

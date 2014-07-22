@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+  <title>大数阶乘</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv='content-type' content='text/html;charset=utf-8' />
+ </head>
+
+ <body>
+<script type="text/javascript">
+function factorial(n) {
+	var a = [1];
+	for (var i = 1;i<=n ;i++) {
+		for (var j = 0, c = 0;j<a.length || c != 0;j++ ) {
+			var m = (j < a.length) ? (i*a[j] + c) : c;
+			a[j] = m % 10;
+			c = (m - a[j]) / 10;
+		}
+	}
+	
+	return a.reverse().join("");
+}
+
+var num = 6;
+
+alert(factorial(num));
+
+
+function test(n) {
+	var a = [1];
+
+	for (var i = 1; i <=n ;i++ ) {
+		for (var j = 0, c = 0;j < a.length || c != 0 ; j++) {
+			var m = j < a.length ? (a[j]*i + c) : c;
+			a[j] = m % 10;
+			c = (m - a[j])/10;
+		}
+	}
+
+	return a.reverse().join("");
+}
+
+function foo(n) {
+        
+	var _a = [1];
+	for (var i=1; i<=n; i++) {
+		var _b = [],_l=_a.length;
+
+		for (var j=0, _c=0; j<_l || _c!=0; j++) {
+
+			var _m = (j < _l) ? (_a[j] * i + _c) : _c;
+
+			_b[j] = _m % 10;
+
+			_c = Math.floor(_m  / 10);
+		}
+		_a = _b;
+	}
+
+	return _a.reverse().join("");
+}
+
+alert( test(1000) == factorial(1000) );
+</script>
+ </body>
+</html>

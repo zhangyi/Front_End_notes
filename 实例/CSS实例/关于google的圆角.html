@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>关于google的圆角</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <style type="text/css">
+	* {margin:0; padding:0;}
+	body {width:800px; padding-left:10px; padding-top:10px;}
+	
+	.g_a{text-decoration:none; color:#000;}
+	/*.g_a:hover {color:#ff0000;}*/
+	.g_a:hover {border-color:#999999;}
+	.g_a:hover .g_b {border-color:#999999;}
+		
+	.g_a, .g_b {border-color:#bbbbbb; border-style:solid; }
+	.g_a{display:inline-block; border-width:1px 0; vertical-align:middle;}
+	.g_b{float:left; background:#e3e3e3; border-width:0 1px; margin:0 -1px; position:relative;}
+	.g_c{display:block; line-height:10px; background:#f9f9f9; border-bottom:2px solid #eeeeee;}
+	.g_d{display:block; padding:2px 10px; margin-top:-10px; cursor:pointer;}
+
+	.x_a_p{display:inline-block; border-top:1px solid #FBD0B2; border-bottom:1px solid #FCE1CE; font-size:12px;}
+	.x_b_p{float:left; border-left:1px solid #FBD0B2; border-right:1px solid #F9B88C; border-bottom:1px solid #F9B88C; margin:0 -1px; position:relative;}
+	.x_c_p{display:inline-block; padding:0.3em 0.6em 0; background:#FEF3EB; border-left:2px solid #ffffff; border-top:1px solid #ffffff; border-bottom:0.2em solid #FEEEE3; line-height:1.1em; cursor:pointer;}	
+  </style>
+ </head>
+
+ <body>
+	纯粹的CSS实现的圆角效果
+	<a href="javascript:;" class="g_a">
+		<span class="g_b">
+			<span class="g_c">&nbsp;</span>
+			<span class="g_d">我很丑，但是我很温柔</span>
+		</span>
+	</a>
+
+	<a href="javascript:;" class="x_a_p">
+		<span class="x_b_p">
+			<span class="x_c_p">高光影按钮</span>
+		</span>
+	</a>
+
+	<div style="clear:both; margin-top:100px; margin-bottom:50px;"></div>
+	<p>
+	1、使用inline的a通过设置inline-block让其衬布类似于inline-block的效果，不需要hack衬布按钮与图文混排的效果 inline或inline-block元素能与文字同行排列
+	</p>
+	<p>
+	2、vertical-align:middle属性为可选
+	</p>
+	<p>
+	3、第二层标签(span)中的positin:relative为了解决IE6下margin负值部分不可见bug，浮动是为了ie6、IE7下	向左的margin:-1能起作用
+	</p>
+	<p>
+	4、第三层标签含有两个并列的span标签，它们display:block为了自动换行且宽度100%显示，但是不能设置宽度为100%;其中第一个span标签的line-height是为了设置高度，千万不能直接使用height撑开高度，原因在于在IE下，height会使标签有haslayout属性，宽度会撑开，满屏显示的。
+	</p>
+
+	<div style="float:left; width:300px; height:300px; border:1px solid red;"></div>
+	<div style="width:300px; height:300px; border:1px solid blue; margin-left:-5px; float:left; position:relative;"></div>
+ </body>
+</html>

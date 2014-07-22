@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>IE6 Peekaboo Bug</title>
+<style type="text/css">
+
+#floatholder{
+	background-color:#CCCCCC;
+}
+#floatbox{
+	float:left;
+	width:70px;
+	height:120px;
+	border:6px #68f solid;
+}
+
+a:hover{ background-color:#FFFFFF}
+
+ul{ padding:0; margin:0; list-style-type:none}
+
+.clearfix:after {
+    content: " "; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix{ height:1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+/* \*/* html #floatbox{ display:inline}/* */
+.clearboth{ clear:both}
+
+
+</style>
+</head>
+
+<body>
+<div id="floatholder">
+<div id="floatbox">浮动元素</div>
+<a href="#">传说中的链接杀手</a> <a href="#">传说中的链接杀手</a> <a href="#">传说中的链接杀手</a> <a href="#">传说中的链接杀手</a>，可能后面还有文字。
+<div class="clearboth">更可怕的杀手</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

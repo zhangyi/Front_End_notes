@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CH" xml:lang="zh-CH">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>缩放的布局</title>
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	text-align:center;
+}
+#wrapper{
+	width:43.75em;
+	margin:20px auto;
+	padding:20px;
+	border:3px #999 solid;
+
+	text-align:left;
+}
+#header,#content p{
+	font:85%/1.6 Verdana, Arial, Helvetica, sans-serif;
+}
+#main{
+	float:left;
+	display:inline;
+	width:100%;
+	margin:0 0 0 -12.5em;
+}
+#content{
+	margin:0 1.25em 0 12.5em;
+}
+#content p{
+	text-indent:2em;
+	margin:0.5em 0;
+	text-align:justify;
+	text-justify :distribute;
+}
+#sidebar{
+	float:left;
+	width:20em;
+	font:62.5%/1 Verdana, Arial, Helvetica, sans-serif;
+}
+#sidebar li{
+	list-style-type: none
+}
+#sidebar li img{ width:20em; height:10em;}
+#footer{
+	clear:both;
+	font:75%/1.6 Verdana, Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+	<div id="header">
+	<h1>Ao.A Album</h1>
+	<h2>Make your life beautiful and easy</h2>
+	</div>
+	<div id="main">
+		<div id="content"><p>全球内最简陋的照片发布、存储、分享平台，通过它你可以学习标准化网页制作的一些知识，虽然没办法涉及到关于Web标准所有的知识，但我会尽可能地把一些常用的应用拿来出讲。</p>
+		<p>text-align:justify; 多行中的非最后一行进行两端对齐，英文比较好，因为大家只能用空格分来单词，中文比较麻烦，各浏览器对中文的理解不一样，Firefox是直接分割中文，IE、Opera不会分割中文，只认空格，要是在中文中间插半角的英文或者标号它还会对不齐，safari接近Opera，都是不加空格没法分。</p></div>
+	</div>
+	<div id="sidebar">
+		<ul>
+			<li><img src="images/cover/flower.jpg" width="200" height="100" alt="传说中的天山雪莲" /></li>
+			<li><img src="images/cover/bleach.jpg" width="200" height="100" alt="一护仔仔手机吊坠"  /></li>
+		</ul>
+	</div>
+	<div id="footer">&copy;传说中的嗷嗷的演示站</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv='content-type' content='text/html;charset=utf-8' />
+  <style type='text/css'>
+	* {margin:0; padding:0;}
+	body {background-color:#fff;}
+
+	#wrapper {width:400px;margin:100px; border:1px solid #ff0000;}
+	#wrapper:after {content:"."; height:0; line-height:0; visibility:hidden; overflow:hidden; display:block; clear:both;}
+	
+	#content,#secondPrimary,#extra{background-color:#CDD8DA; text-align:center; position:relative;}
+	
+	#primary {width:100%; float:right; margin-left:-200px;}
+	#content {margin-left:210px; height:500px; line-height:500px;}
+	#secondPrimary {float:left; width:200px; height:300px; line-height:300px;}
+	#extra {clear:float; float:left;  height:190px; width:200px; margin-top:10px; line-height:190px;}
+	
+	.current {background-color:#DDF8C0; position:absolute; top:0; left:0;}
+  </style>
+ </head>
+
+ <body>
+
+<div id="wrapper">
+	<div id="primary">
+		<div id='content'>
+			<div>C</div>
+		</div>
+	</div>
+
+	<div id="secondPrimary">
+		<div>A</div>
+	</div>
+	<div id="extra">
+		<div>B</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	function $(id) {
+		return typeof id === 'string' ? document.getElementById(id) : id;
+	}
+	
+	var Event = {
+		
+		add : function(el, handler, fn) {
+			handler = handler.replace(/^on/, "").toLowerCase();
+			
+			if(el.attachEvent) {
+				el.attachEvent("on" + handler, fn);
+			} else {
+				el.addEventListener(handler, fn, false);
+			}
+
+			return el;
+		},
+		remove : function(el, handler, fn) {
+			handler = handler.replace(/^on/, "").toLowerCase();
+			
+			if(el.detachEvent) {
+				el.detachEvent("on" + handler, fn);
+			} else {
+				el.removeEventListener(handler, fn, false);
+			}
+
+			return el;
+		},
+		removeAll : function() {
+			
+		}
+	};
+
+	var Dom = {
+		getParent : function(node) {
+			if(!node) {
+				return null;
+			}
+
+			var parent = !!node.parentNode && node.parentNode.nodeType == 1 ? node.parentNode : null;
+
+			if(!parent) {
+				while (parent) {
+					parent = parent.parentNode;
+
+					if(!!parent && parent.nodeType == 1) {
+						break;
+					}
+				}
+			}
+
+			return parent;
+		},
+		getFirstChild : function(node) {
+			if (!node) {
+				return null;
+			}
+			var child = !!node.firstChild && node.firstChild.nodeType == 1 ? node.firstChild : null;
+
+			return child || this.getNextSibling(node.firstChild);
+		},
+		getNextSibling : function(node) {
+			if(!node) {
+				return null;
+			}
+
+			while (node) {
+				node = node.nextSibling;
+
+				if(!!node && node.nodeType == 1) {
+					return node;
+				}
+			}
+
+			return null;
+		},
+		/**
+		* 判断指定的节点是否是第二个节点的祖先
+		*/
+		isAncestor : function(node1, node2) {
+			if(!node1 || !node2) {
+				return false;
+			}
+
+			return node1.contains ? (node1 != node2 && node1.contains(node2)) : !!(node1.compareDocumentPosition(node2) & 16);
+		}
+	}
+	
+	function zoomIn(ev, rate) {
+		
+		if (!this._w) {
+			this._w = this._w || this.offsetWidth;
+			this._h = this._h || this.offsetHeight;
+		}	
+
+		this.style.zIndex = 1;
+		
+		var child = Dom.getFirstChild(this);
+		child.className = "current";
+
+		child.style.width = this.offsetWidth * rate + "px";
+		child.style.height = this.offsetHeight * rate + "px";
+		child.style.lineHeight = this.offsetHeight * rate + "px";
+	}
+
+	function zoomOut(ev, rate) {
+		this.style.zIndex = 0;
+
+		var child = Dom.getFirstChild(this);
+		child.className = "";
+
+		child.style.width = '100%';
+		child.style.height = '100%';
+		child.style.lineHeight = this._h + 'px';
+	}
+
+	!(function() {
+		var a = $("content"), b = $("secondPrimary"), c = $("extra");
+
+		var arr = [a, b, c], tempEl = null, zoomRate = 1.2;
+
+		for (var i = 0,len = arr.length; i<len;i++) {
+			tempEl = arr[i];
+			
+			//绑定mouseover事件
+			Event.add(tempEl, 'mouseover', function(el, rate) {
+				return function() {
+					var args = Array.prototype.slice.call(arguments).concat([rate]);
+
+					return zoomIn.apply(el, args);
+				}
+			}(tempEl, zoomRate));
+			
+			//绑定mouseout事件
+			Event.add(tempEl, 'mouseout', function(el, rate) {
+				return function() {
+					var args = Array.prototype.slice.call(arguments).concat([rate]);
+
+					return zoomOut.apply(el, args);
+				}
+			}(tempEl, zoomRate));
+		}
+		
+		a = b = c = arr = tempEl = zoomRate = null;
+	})();
+	
+</script>
+
+ </body>
+</html>

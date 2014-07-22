@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动画缩放</title>
+<script type="text/javascript" src="jquery-1.3-all.js"></script>
+<script type="text/javascript" src="jquery.animation.easing.js"></script>
+<style type="text/css">
+	* {margin:0; padding:0;}
+	
+	.bigBox {border:1px solid #ccc; position:absolute; left:200px; top:500px; width:530px; height:70px;}
+	.smallbox {border:1px solid #ccc; position:absolute; left:1000px; top:10px; width:60px; height:20px;}
+	
+	#runAnimate {margin-top:400px; margin-left:-300px;}
+</style>
+</head>
+<body>
+
+<div class='bigBox' id='box_1'></div>
+<div class='smallbox' id='box_2'></div>
+
+<select id="animateType" style='margin:200px;'></select>
+
+<button id="runAnimate">执行动画</button>
+
+<script type="text/javascript">
+	var selEl = document.getElementById('animateType');
+	
+	selEl.options.length = 0;
+	
+	for (var i in jQuery.easing) {
+		if (jQuery.easing.hasOwnProperty(i)) {
+			var opt = document.createElement('option');
+				opt.value = i;
+				opt.innerHTML = i;
+			
+			selEl.appendChild(opt);
+		}
+	}
+	
+	var direction = 'top';
+	
+	$("#runAnimate").click(function() {
+		if(direction == 'top')	{
+			direction = 'bottom';
+			run('box_1', 'box_2');
+		} else {
+			direction = 'top';
+			run('box_2', 'box_1');
+		}
+	});
+	
+	function run(fId, tId) {
+		var fElem = $("#" + fId),
+			tElem = $("#" + tId);
+			
+		var from = {
+			xy : fElem.offset(),
+			size : {
+				width : fElem.width(),
+				height : fElem.height()
+			}
+		};
+		
+		var to = {
+			xy : tElem.offset(),
+			size : {
+				width : tElem.width(),
+				height : tElem.height()
+			}
+		}
+		
+		var tempDiv = document.createElement('div');
+			tempDiv.style.margin = '0';
+			tempDiv.style.padding = '0';
+			tempDiv.style.backgroundColor = 'transparent';
+			tempDiv.style.position = 'absolute';
+			tempDiv.style.border = '1px solid #999';
+			tempDiv.style.width = from.size.width + 'px';
+			tempDiv.style.height = from.size.height + 'px';
+			tempDiv.style.left = from.xy.left + 'px';
+			tempDiv.style.top = from.xy.top + 'px';
+			
+		document.body.appendChild(tempDiv);
+		
+		$(tempDiv).animate({
+			top : to.xy.top,
+			left : to.xy.left,
+			width : to.size.width,
+			height : to.size.height,
+			borderWidth : 1
+		}, {
+			duration : 500,
+			easing : document.getElementById('animateType').value,
+			complete : function() {
+				document.body.removeChild(this);
+			},
+			step : function(t, $pointer) {//this.now = this.start + ((this.end - this.start) * this.pos);
+				
+			},
+			queue : true
+		});
+		
+		tempDiv = null;
+		
+		document.title = '当前的动画类型：' + document.getElementById('animateType').value;
+	}
+	
+	$("#animateType").change(function() {
+		drawChart(this.value);
+	});
+	
+	function drawChart(val) {
+		var iChart = 550;
+		
+		var a = [],
+			_func = jQuery.easing[val];
+			
+		for (var i = 0; i < iChart; i++) {
+			a.push('<div style="background-color:#f60;font-size:0;width:3px;height:3px;position:absolute;left:' + (i-1) + 'px;top:' + (Math.ceil(_func(null, i , 200, -200, iChart))) + 'px;"><\/div>');
+		}
+		document.getElementById("idChart").innerHTML = a.join("");
+	}
+	
+	window.onload = function() {
+		drawChart(document.getElementById('animateType').value);
+	}
+</script>
+
+<div id="idChart" style="border:1px solid #000;height:200px; width:550px; margin-top:20px; position:relative; clear:both; margin-top:10px;"> </div>
+
+</body>
+</html>

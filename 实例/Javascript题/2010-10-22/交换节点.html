@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv='content-type' content='text/html;charset=utf-8' />
+ </head>
+
+ <body>
+  
+<div id="dv1" style="background-color:yellow;">
+	<p>我是谁</p>
+</div>
+<div id="dv2" style="background-color:green;">
+	<p>我是神</p>
+</div>
+
+<button onclick='swap()'>交换节点</button>
+
+<script type="text/javascript">
+
+function getEl(id) {
+	return typeof id === 'string' ? document.getElementById(id) : id;
+}
+
+function swap() {
+	var div1 = getEl("dv1");
+	var div2 = getEl('dv2');
+
+	var p1 = div1.getElementsByTagName("p")[0];
+	var p2 = div2.getElementsByTagName("p")[0];
+
+	swapDomNode(p1, p2);
+}
+
+function swapDomNode(node1, node2) {
+	if (node1.swapNode) {
+		node1.swapNode(node2);
+	} else {
+		var parent = node2.parentNode;
+		var next = node2.nextSiblign;
+
+		if (next == node1) {
+			parent.insertBefore(node1, node2);
+		} else if (node2 == node1.nextSiblign) {
+			parent.insertBefore(node2, node1);
+		} else {
+			node1.parentNode.replaceChild(node2, node1);
+			parent.insertBefore(node1, next);
+		}
+	}
+}
+	
+
+</script>
+
+ </body>
+</html>

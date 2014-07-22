@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ </head>
+
+ <body>
+  <script type="text/javascript">
+function getRealLen(str, isUTF8) {
+	if (typeof str != 'string') {
+		return 0;
+	}
+	
+	if (!isUTF8) {
+		return str.replace(/[^\x00-\xFF]/g, 'xx').length;
+	} else {
+		var tempStr = str.replace(/[\x00-\xFF]/g, '');
+		return (str.length - tempStr.length) + Math.floor(encodeURI(tempStr).length / 3);
+	}
+}
+
+function uniLeft(str, isUTF8, len, suffix) {
+	var str = str.toString();
+	var len = len * 1;
+	var suffix = suffix || "";
+
+	if (isNaN(len)) {
+		return str;
+	}
+
+	var uniLen = getRealLen(str, isUTF8),tempStr = '';
+	
+	if (uniLen <= len) {
+		return str.substr(0);
+	}
+	
+	for (var i = Math.floor(len / 2); i< uniLen; i++) {
+		tempStr = str.substr(0, i);
+
+		if (getRealLen(tempStr, isUTF8) >= len || getRealLen(str.substr(0, i+1), isUTF8) > len) {
+			return tempStr;
+		}
+	}
+}
+
+var str_1 = '你好';
+var str_2 = '你好world';
+
+document.write( uniLeft(str_1, false, 3) + "<br/>");//gb2312
+document.write( uniLeft(str_2, true, 9) );//utf-8
+</script>
+ </body>
+</html>

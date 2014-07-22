@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>受词霸 Tab切换</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <!--<link rel="stylesheet" href="css/reset.css" type="text/css"/>-->
+  <style type="text/css">
+	* {margin:0; padding:0;}
+	html,body {background:#fff;font:12px/1.4 arial sans-serif helvetica; text-align:center;}
+	h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal;}
+
+	.main {width:755px; margin:20px auto;}
+	.tab {border-bottom:1px solid #c8c8c8; /*background:transparent url(images/height_one.gif) repeat-x scroll 0 0;*/}
+	.tab ul li{list-style:none; height:26px; width:69px; line-height:26px; float:left; background:transparent url(../images/sprite_tab.jpg) no-repeat scroll -90px 0; color:#999; cursor:pointer; margin-right:3px; border:none; margin-bottom:-1px; position:relative;/*relative 可以解决margin超出隐藏的方式*/}
+	.tab ul li.no {background-position:0 0; color:#666;}
+	.tab ul li:after { clear:both; content:"\0020"; display:block; visibility:hidden; height:0;}
+	.tabCont {width:753px; border-color:#c8c8c8; border-width:1px; border-style:none solid solid solid; text-align:left; height:300px; overflow:visible;}
+	div[class="tabCont"] {min-height:300px; height:auto;}
+	.tab .bottomLine {background:none; clear:both; height:1px; position:absolute; width:753px; left:0; background-color:#c8c8c8;}
+
+
+	.tabCont .info {padding:20px;}
+
+	.cls{zoom:1}
+	.cls:after {clear:both; content:"\0020"; display:block; visibility:hidden; height:0;}
+
+	.none {display:none;}
+
+	.mainCont {margin-top:30px; border:1px solid #c8c8c8; height:200px; width:753px; overflow:visible;}
+	div[class="mainCont"] {/*min-height:200px;*/ height:auto;}
+
+	.mainCont .tit {background:transparent url(../images/content_bg2.jpg) repeat-x scroll 0 0; height:30px; line-height:30px; cursor:pointer; border-color:#F2F6FB #F2F6FB #EFEFEF; border-style:solid; border-width:1px; color:#333; width:750px; margin:2px auto;}
+	.mainCont .tit h3{text-align:left; padding-left:5px; font-size:14px; font-weight:bold; float:left;}
+	.mainCont .tit span {float:right; padding-right:20px; color:#666;}
+	.mainCont .up{background:transparent url(../images/cont.gif) no-repeat scroll 0 -35px; float:right; width:15px; height:15px; margin-top:6px; margin-right:10px;}
+	.mainCont .down{background-position:-30px -35px;}
+	.mainCont .ex_cont {text-align:left; padding:5px; color:#666;}
+  </style>
+ </head>
+
+ <body>
+	<div class="main">
+		<div class="tab" id="tabTest">
+			<ul class="cls">
+				<li class="no">基本释义</li>
+				<li>词组习语</li>
+				<li>同反义词</li>
+				<li>行业释义</li>
+				<li>英英业释义</li>
+				<li>更多资料</li>
+			</ul>
+		</div>
+		<div class="tabCont" id="contContainer">
+			<div class="info">tab内容1</div>
+			<div class="info none">tab内容2</div>
+			<div class="info none">tab内容3</div>
+			<div class="info none">tab内容4</div>
+			<div class="info none">tab内容5</div>
+			<div class="info none">tab内容6</div>
+		</div>
+
+
+		<div class="mainCont">
+			<div class="tit cls" id="handler">
+				<h3>网络例句</h3>
+				<div class="up" id="iconEl"></div>
+				<span>以下结果来自互联网</span>
+			</div>
+			<div class="ex_cont" id="handlerCont">
+				<p>这里是内容...</p>
+				<p>这里是内容...</p>
+				<p>这里是内容...</p>
+				<p>这里是内容...</p>
+				<p>这里是内容...</p>
+				<p>这里是内容...</p>
+				<p>这里是内容...</p>
+				<p>这里是内容...</p>
+				<p>这里是内容...</p>
+				<p>这里是内容...</p>
+				<p>这里是内容...</p>
+			</div>
+		</div>
+
+	</div>
+
+<script type="text/javascript">
+	function $(id) {
+		return typeof id === "string" ? document.getElementById(id) : id;
+	}
+
+	$("handler").onclick = function() {
+		var elem = $("handlerCont"),
+			icon = $("iconEl");
+
+		if(elem.style.display != "none") {
+			elem.style.display = "none";
+			addClass(icon, "down");
+		} else {
+			elem.style.display = "block";
+			replaceCss(icon, "down", "");
+		}
+	}
+
+	function replaceCss(elem, className_1, className_2) {
+		className_2 = className_2 || "";
+		elem.className = elem.className.replace(new RegExp(className_1), className_2);
+	}
+
+	function addClass(elem, className) {
+		elem.className = elem.className.replace(/(^[\s\t\xa0\u3000]+)|([\s\t\xa0\u3000]+$)/, "") + " " + className;//去除两端空格后再加上" "
+	}
+
+	function toggle(elems, flag) {
+		if( Object.prototype.toString.call(elems) !== "[object Array]" ) {
+			elems = [elems];
+		}
+
+		for(var i=0,len=elems.length; i<len;i++) {
+			if(elems[i].nodeType === 1) {
+				elems[i].style.display = flag ? "block" : "none";
+			}
+		}
+	}
+
+	function tabChange(tabId, contId) {
+		var lis = $(tabId).getElementsByTagName("li"),
+			elems = $(contId).childNodes;
+
+		for(var i=0; i<elems.length; i++) {
+			if(elems[i].nodeType !== 1) {//Object.prototype.toString.apply(elems) ---> [object NodeList]
+				elems.item(i).parentNode.removeChild(elems.item(i));//移除空白文本
+				i -= 1;
+			}
+		}
+
+		var currentIndex = 0;
+
+		for(var i=0,len=lis.length; i<len;i++) {
+			lis[i].onclick = function(index) {
+				return function() {
+					if(index === currentIndex) {
+						return ;
+					}
+
+					replaceCss(lis[currentIndex], "no", "");
+					lis[index].className = lis[index].className + "no";
+					toggle( [ elems[currentIndex] ], false);
+					toggle(elems[index], true);
+
+					currentIndex = index;
+				}
+			}(i);
+		}
+	}
+
+	tabChange("tabTest", "contContainer");
+</script>
+
+ </body>
+</html>

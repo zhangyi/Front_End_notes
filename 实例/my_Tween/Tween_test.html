@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动画测试</title>
+<script type="text/javascript" src="FX.js"></script>
+<style type="text/css">
+	button {margin-left:20px;}
+</style>
+</head>
+<body>
+	
+	<button onclick="clearTimer();animate()">开建执行动画</button> 
+	<button onclick="clearTimer(); fx.pause();" disabled=true>暂停</button>
+	<button onclick="clearTimer(); fx.play()" disabled=true>继续播放</button>
+	<button onclick="clearTimer(); fx.rePlay();" disabled=true>重新播放</button>
+	
+	<div style="margin-top:10px;">当前动画的执行的百分比:<span id="animatePercent"></span></div>
+	
+	<div id="bar" style="width:10em; height:30%; position:absolute; border:1px solid red; margin-top:50px; left:50px;"></div>
+	<div style="height:2800px;"></div>
+	<script type="text/javascript">
+		function rand(min,max){
+			return Math.round(min+(Math.random()*(max-min)));
+		}
+		
+		var easing = ['simple', 'regularEaseIn', 'regularEaseOut', 'regularEaseInOut', 'backEaseIn', 'backEaseOut', 'backEaseInOut',
+			'bounceEaseOut', 'bounceEaseIn', 'bounceEaseInOut', 'strongEaseIn', 'strongEaseOut', 'strongEaseInOut',
+			'elasticEaseIn', 'elasticEaseOut', 'elasticEaseInOut'
+		];
+		
+		var fx = null;
+		
+		function addEvent(el, fn, handler) {
+			if(el.attachEvent) {
+				el.attachEvent("on" + fn, handler);
+			} else {
+				el.addEventListener(fn, handler, false);
+			}
+		}
+		
+		if (/firefox/i.test(navigator.userAgent)) {
+			document.addEventListener('DOMMouseScroll', wheel, false);
+		} else {
+			document.onmousewheel = wheel;
+		}
+		
+		function wheel(ev) {
+			return ;
+			ev = ev || window.event;
+			
+			var delta = 0;
+			
+			if(ev.wheelDelta) {//非FF
+				delta = ev.wheelDelta;// /120;
+			} else if(ev.detail) {//FF
+				delta = ev.detail;  // /3;
+			}
+			
+			if(ev.preventDefault) {
+				ev.preventDefault();
+			} else {
+				ev.returnValue = false;
+			}
+			
+			var val = ev.wheelDelta || ev.detail;
+			
+			if(fx) {
+				fx.stop();
+			}
+			
+			fx = new Fx("abcdefg", {
+				'scrollTop' : {to:val>0?"-" + val : "+" + Math.abs(val)}
+			}, .3, "easeInOut");
+			
+			setTimeout(function() {
+				fx.start(true);
+			}, 0)
+			
+			alert(ev.wheelDelta + "\n" + ev.detail);
+			if(delta) {
+				if(delta < 0) {
+					document.title = "向下滚动的";
+				} else {
+					document.title = "向上滚动的";
+				}
+			}
+		}
+		
+		function animate() {
+			if(fx) {
+				fx.pause();
+			} else {
+				var btns = document.getElementsByTagName("button");
+				for(var i=1, len=btns.length; i<len; i++) {
+					btns[i].disabled = false;
+				}
+			}
+			
+			fx = new Fx('bar', {
+				top: {to: rand(10, 30)},
+				left: {to: rand(20, 40), units: 'ex'},
+				width: {to: rand(10, 40), units: 'em'}, 
+				height: {to: rand(10, 260), units: '%'},
+				opacity : {from:rand(0, 1), to:(Math.min(rand(0, 1))+0.1, 1)},
+				backgroundColor: {to: "rgb("+rand(0, 255)+", "+rand(0, 255)+", "+rand(0, 255)+")"}
+			}, 1, easing[rand(0, easing.length - 1)]);
+			
+			fx.onMotionChange = function() {
+				document.getElementById('animatePercent').innerHTML = this.getPercent();
+			}
+			
+			fx.start();
+			
+			fx.onMotionStop = function() {
+				animateTimer = setTimeout(function() {
+					animate();
+				}, 500);
+			}
+		}
+		
+		var animateTimer = null;
+		
+		function clearTimer() {
+			if(animateTimer) {
+				clearTimeout(animateTimer);
+			}
+		}
+	</script>
+	
+</body>
+</html>

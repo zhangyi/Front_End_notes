@@ -1,0 +1,128 @@
+/* CSS Document by aoao */
+*{
+	margin:0; padding:0;
+}
+body{
+	font:12px/1.6 Verdana, Arial, Helvetica, sans-serif;
+	color:#555;
+	background-color:#FFF;
+	background:#E2D9CA url(../images/bg.jpg) repeat-y center top;
+	text-align:center;
+}
+a:link{
+	color:#0033CF;
+}
+a:visited{
+	color:#333;
+}
+a:hover,a:focus,a:active{
+	color:#FF0084;
+	text-decoration:none
+}
+
+.hide{
+	overflow:hidden;
+	height:0px;
+	display:block;
+}
+#wrapper{
+	width:100%;
+	margin:0 auto;
+	background:url(../images/header_bg.jpg) no-repeat center top;
+}
+#header,#main,#footer{
+	width:730px;
+	margin:0 auto;
+	text-align:left;
+}
+#logo{
+	padding:5px 0 0 20px
+}
+#skip{
+	position:absolute;
+	z-index:3;
+	left:0;
+	top:-24px;
+	width:100%;
+	height:26px;
+	line-height:26px;
+	text-align:center;
+	background:#FAFBFD url(../images/skip_bg.gif) repeat-x 0 100%;
+	opacity:.8;
+	-moz-opacity:.8;
+	-khtml-opacity:.8;
+	filter:alpha(opacity=80);	
+}
+#skip:hover{
+	top:0;
+}
+#footer{
+	margin:20px auto;
+	padding:20px 0;
+	background:url(../images/footer_bg.jpg) no-repeat 50% 0%;
+	text-align:center;
+}
+
+
+#photoShow{
+	float:left;
+	width:484px;
+	background:url(../images/show_bg.gif) no-repeat 0 0;
+}
+#photoShow ul{
+	width:468px;
+	margin:0 8px;
+	padding:8px 0 0;
+}
+#photoShow li{
+	list-style-type:none;
+	float: left;
+	margin:0 1px 1px 0
+}
+#photoShow li img{
+	border:1px #fff solid;
+	display:block;
+}
+#photoShow a{
+	text-decoration:none;
+	float:left;
+	display:inline;
+}
+#photoShow a span{
+	display:none;
+}
+#photoShow li a:hover,#photoShow li a:focus,#photoShow li a:active{
+	position:relative;
+	margin:-1px;z-index:100;	
+}
+#photoShow li a:hover img,#photoShow li a:focus img,#photoShow li a:active img{
+	border-color:#FF0084;
+	padding:1px;
+}
+#photoShow a:hover span,#photoShow a:focus span,#photoShow a:active span{
+	position:absolute;
+	left:90%;
+	top:90%;
+	display:block;
+	border:1px solid;
+	padding:2px 4px;
+	background-color:#fff;
+	white-space:nowrap;
+	opacity:.9;
+	-moz-opacity:.9;
+	-khtml-opacity:.9;
+	filter:alpha(opacity=90);
+}
+#notice{
+	float:left;
+	width:484px;
+	background:url(../images/show_bg.gif) no-repeat 0 100%;
+}
+#notice ul{
+	padding:5px 10px 3px;
+}
+#notice li{
+	padding:0 0 2px 16px;
+	list-style-type:none;
+	background:url(../images/notice.gif) no-repeat 0 50%;
+}

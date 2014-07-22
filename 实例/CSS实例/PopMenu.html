@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>PopMenu</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
+  <style type="text/css">
+	* {margin:0; padding:0;}
+	body {background-color:#FFFFFF;}
+
+	.pop_menu{position:absolute;z-index:10001;width:170px;font-size:12px;font-family:Arial, Simsun, "Arial Unicode MS", Mingliu, Helvetica; padding:0 2px 2px 0;}
+	.pop_menu_shadow{/*B0B0B0*/ filter:alpha(opacity=12); opacity:.12; background-color:#000000; position:absolute; left:2px; top:2px; height:100%; width:100%; height:800px;}
+	.pop_menu_ul{list-style:none;margin:0;padding:2px;border:1px solid #333333;background-color:#FFFFFF; width:200px; overflow:hidden; position:relative;/*没有宽度IE下文字之外不能触发hover*/}
+	.pop_menu_ul li {font-size:0;}
+	.pop_menu_ul li a{display:block; height:8px; line-height:18px; font-size:12px;}
+	.pop_menu {background-color:#FFFFFF;}
+	.pop_menu_a:visited, .pop_menu_a:link{height:16px;padding:3px 5px;color:#000000;white-space:nowrap;text-decoration:none;}
+	.pop_menu_a:hover{background-color:#62B0FF;}
+	.pop_menu_separator{border-top:1px solid #999;height:1px;overflow:hidden;margin:2px 0 1px 0;}
+
+
+	.popup_menu {position:absolute; left:30px; top:100px; z-index:1; font-size:12px;line-height: 1.5; text-align:left;}
+	.popup_menu .bd {border:1px solid #808080; background-color:#FFFFFF;}
+	
+	.popup_menu_ul {list-style-type:none; padding:2px 1px; width:400px;}
+	/*
+        For IE: Used to collapse superfluous white space between <li> elements
+        that is triggered by the "display" property of the <a> elements being
+        set to "block."
+    */
+	.popup_menu_item {display: inline;}
+	.popup_menu_a {display: block; white-space: nowrap;}	
+	.popup_menu_a {text-decoration:none; color:#000000; padding:0 20px;  background:#FFFFFF; zoom:1;}	
+	.popup_menu_a:hover {background-color:#62B0FF;}
+	.popup_menu_a:visited, .popup_menu_a:link {color:#000000;}
+
+	.popup_menu_shadow {background-color:#000000; opacity:0.12; filter:alpha(opacity=12); bottom:-3px; left:3px; right:-3px; top:3px; z-index:-1; position:absolute; }
+  </style>
+ </head>
+
+ <body>
+	 <div class='pop_menu' style='left:300px; top:50px;'>
+		<div class='pop_menu_shadow'></div>	
+		<ul class='pop_menu_ul'>
+			<li><a href="javascript:;" class='pop_menu_a'>移动到顶层</a></li>
+			<li><a href="javascript:;" class='pop_menu_a'>移动到上一层</a></li>
+			<li><a href="javascript:;" class='pop_menu_a'>移动到下一层</a></li>
+			<li><a href="javascript:;" class='pop_menu_a'>移动到底层</a></li>
+			<li><a href="javascript:;" class='pop_menu_a'>还原默认位置</a></li>
+			<li><a href="javascript:;" class='pop_menu_a'>切换导航纵/横向风格</a></li>
+		</ul>
+	 </div>
+
+<script type="text/javascript">
+	var arr = [
+'		<div class="popup_menu" style="left:300px; top:500px;">',
+'			<div class="bd">',
+'				<ul class="popup_menu_ul">',
+'					<li class="popup_menu_item"><a href="javascript:;" class="popup_menu_a">移动到顶层</a></li>',
+'					<li class="popup_menu_item"><a href="javascript:;" class="popup_menu_a">移动到上一层</a></li>',
+'					<li class="popup_menu_item"><a href="javascript:;" class="popup_menu_a">移动到下一层</a></li>',
+'					<li class="popup_menu_item"><a href="javascript:;" class="popup_menu_a">移动到底层</a></li>',
+'					<li class="popup_menu_item"><a href="javascript:;" class="popup_menu_a">还原默认位置</a></li>',
+'					<li class="popup_menu_item"><a href="javascript:;" class="popup_menu_a">切换导航纵/横向风格</a></li>',
+'				</ul>',
+'			</div>',
+'			<div class="popup_menu_shadow"></div>',
+'		</div>'
+	];
+
+	document.write(arr.join(""));
+</script>
+
+<style type='text/css'>
+.pop_menu {position:absolute; background-color:#fff; font-size:12px; z-index:3333; overflow:hidden; display:block; left:30px; top:100px; color:#363636; width:auto !important;};
+.pop_menu .menu_bd{background-color:#d9d9d9; padding:0 2px 2px 0; }
+.pop_menu .menu_item_list {width:100px; height:auto; overflow-y:auto; overflow-x:hidden; background-color:#fff; padding:4px 0; border:1px solid #c8cfda; white-space:nowrap; text-overflow:ellipsis;}
+.pop_menu .menu_item, .pop_menu .menu_item_separator, .pop_menu .menu_item_high {height:22px; line-height:22px; padding:0 8px; overflow:hidden; cursor:pointer; display:block;}
+.pop_menu .menu_item_separator {cursor:default; height:10px; line-height:10px;}
+.pop_menu .menu_item_separator div {height:1px; margin:5px auto auto; background-color:#ccc; overflow:hidden;}
+.pop_menu .menu_item_high {background-color:#3460cc; color:#fff;}
+</style>
+<div class="pop_menu">
+	<div class="menu_bd">
+		<div class="menu_item_list">
+			<div class="menu_item_high">已读邮件</div>
+			<div class="menu_item">已读邮件</div>
+			<div class="menu_item_separator"><div></div></div>
+			<div class="menu_item">待办邮件</div>
+			<div class="menu_item">取消待办</div>
+			<div class="menu_item_separator"><div></div></div>
+			<div class="menu_item">新建标签</div>
+			<div class="menu_item_high">已读邮件</div>
+			<div class="menu_item">已读邮件</div>
+			<div class="menu_item_separator"><div></div></div>
+			<div class="menu_item">待办邮件</div>
+			<div class="menu_item">取消待办</div>
+			<div class="menu_item_separator"><div></div></div>
+			<div class="menu_item">新建标签</div>
+		</div>
+	</div>
+</div>
+
+ </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+  <title>1-100自然数，找出缺少的数</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv='content-type' content='text/html;charset=utf-8' />
+ </head>
+
+ <body>
+  
+<script type="text/javascript">
+var n=50*10000;//n是常数,不算临时变量。
+var arr=[];//这是输入数据，不算临时变量
+for(var i=0;i<n;i++){
+    arr.push(i+1)
+}
+//i是生成输入数据使用的，不算临时变量
+//随机抽取掉两个数
+document.write("抽掉的第1个数是："+arr.splice(Math.floor(Math.random()*arr.length),1))
+document.write("<br>抽掉的第2个数是："+arr.splice(Math.floor(Math.random()*arr.length),1))
+//打乱顺序
+arr.sort(function(){return Math.random()-.8});
+
+var b= new Array(n);
+for (var i in arr) {
+	b[arr[i] - 1] = 1;
+}
+
+for (var i = 0, len = b.length;i<len;i++) {
+	if (!b[i]) {
+		document.write("<br/>抽掉的数为：" + (i+1));
+	}
+}
+</script>
+
+ </body>
+</html>

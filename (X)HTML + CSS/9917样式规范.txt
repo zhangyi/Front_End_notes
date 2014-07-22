@@ -1,0 +1,195 @@
+1、样式命名规范：
+	a、命名所选用的单词应选择不过于具体表示某一状态（如颜色、字号大小等）单词，以避免当状态改变时名称失去意义
+	b、样式类名由以字母开头的小写字母(a-z)、数字(0-9)、下划线(_)、减号(-)组成
+	c、ID名称由不以数字开头的小写字母(a-z)、数字(0-9)、下划线(_)组成
+2、通用名称的缩写：
+	设置	set
+	成功	suc
+	提示	hint
+	失败	lost
+	按钮	btn
+	文本	tx
+	颜色	color,c
+	背景	bg
+	边框	bor
+	上		top,t
+	下		bottom,b
+	左		left,l
+	右		right,r
+	居中	center,cnt
+	添加	add
+	删除	del
+	间隔	sp
+	段落	p
+	图标	icon
+	模块	mode
+	弹出	pop
+	公共	global,gb
+	标题	title,tit
+	操作	op
+	密码	pw
+	菜单	menu
+	内容	cont
+	透明	tran
+	信息	info
+	重点	hit
+	预览	pvw
+	Tips	tips
+	input	input
+	
+	
+	导入	inc
+	合作	d3f
+	大		b
+	小		s
+	导航	nav
+	宽版	wfullmode
+	全屏	fullmode
+	小窝	minimode
+	
+3、模块前缀
+	首页	index
+	日志	blog
+	相册	photo
+	留言板	guestbook
+	音乐盒	music
+	迷你屋	minhome
+	好友圈	friends
+	个人档	userinfo
+	圈子	club
+	信息中心	mescenter
+	广告中心	adcenter
+	工具栏		toolbar
+	框架		mode
+	容器		container
+	
+4、命名规则
+	[模块前缀|类型|作用]_[名称]_[状态|位置]
+	每项都可有多个，但顺序应以上面为准则，尽量保持到三个名词说清用途并注意可复用性。
+	
+	eg:
+		文本输入框：
+			.input_tx
+		密码输入框
+			.input_pw
+		登录密码输入框
+			.input_pw_login
+		日志设置成功提示
+			.hint_suc_blogset
+		相册弹出的设置层、
+			.pop_set_photo
+		公共提示
+			hint_bg
+		文本颜色
+			.c_tx
+		段落文本颜色
+			.c_tx_p
+	
+5、注释
+	注释信息应写在标签开始之前和结束之后
+	
+	eg1、(区域注释):
+	<!--S 注释内容-->
+	<div>
+		...
+	</div>
+	<!--E 注释内容-->
+	
+	eg2、(单行注释)：
+	<div><!-- 注释内容 -->
+		...
+	</div>
+	
+	注释层级：
+	(HTML)
+	<!--S注释内容-->
+		...
+		<!--S注释内容-->
+			...
+				<!--S注释内容-->
+					...
+				<!--E注释内容-->
+		<!--E注释内容-->
+	<!--E注释内容-->
+	
+	(CSS)
+	/*=S 注释内容 */
+		...
+	/*==S 注释内容 */
+		...
+	/*===S 注释内容 */
+		...
+	/*===E 注释内容 */
+	/*==E 注释内容 */
+	/*=E 注释内容 */
+	
+	<!--= S 效果用的九宫格 -->
+  <div class="mode_9box">
+    <div class="box_tr">
+      <div class="box_tl">
+        <div class="box_tm"></div>
+      </div>
+    </div>
+    <div class="box_mr">
+      <div class="box_ml bor">
+        <div class="mode_gb" style="height:428px;">
+          <!-- 内容实际大小(默认宽=模块宽，内容大小=模块大小-边距) -->
+
+          <!--== S 模块标题 -->
+          <div class="mode_gb_title style_mode_gb_title" style="height:auto">
+            <div class="bg_mode_gb_title">
+              <h3><img src="http://imgcache.qq.com/ac/qzone_v5/b.gif" alt="icon" class="icon_title" />标题</h3>
+            </div>
+          </div>
+          <!-- ==E 模块标题 -->
+
+          <!--==S 模框内容 -->
+          <div class="mode_gb_cont">
+            内容
+          </div>
+          <!--==E 模框内容 -->
+
+        </div>
+      </div>
+    </div>
+    <div class="box_br">
+      <div class="box_bl">
+        <div class="box_bm"></div>
+      </div>
+    </div>
+  </div>
+  <!--= E 效果用的九宫格 -->
+	
+<div class="mod mod2..."><!--这里可以附加更多Class来改变整体的表现-->
+    <div class="modTL"></div><!--这里可以插入图标-->
+    <div class="modTM"></div><!--这里可以插入标题-->
+    <div class="modTR"></div><!--这里可以插入操作按钮-->
+    <div class="modML">
+        <div class="modMM">
+	    <div class="modMR"></div>
+        </div>
+    </div>
+    <div class="modBL"></div>
+    <div class="modBM"></div>
+    <div class="modBR"></div>
+</div>
+	
+关于layout详细说明：http://www.ks-pe.com/article/36.html
+关于CSS技术研究：http://www.zhangxinxu.com/wordpress/?p=425
+
+
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form, input, textarea{margin:0;}   ol,li{margin:0; padding:0;}
+与Css Rest有何关联？http://www.zhangxinxu.com/wordpress/?p=758
+一般会提出很多的对于CSS Rest的观点，而我看到Tencent QQ空间global.css内置的写法如下：
+* {margin:0; padding:0;}
+img {border:none; vertical-align:middle;}
+ul, li{list-style-type:none;}
+.none {display:none !important;}
+.clear {clear:both;}
+a:link, a:visited {text-decoration:none;}
+a:hover, a:active {text-decoration:underline;}
+未访问及访问过链接A元素默认不设置下划线，点击而触发时将显示下划线
+.tx_fix {_zoom:1; display:-moz-inline-box;display:inline-block;overflow:hidden; word-break:keep-all;word-wrap:keep-all;white-space:nowrap;table-layout:fixed;-o-text-overflow:ellipsis;text-overflow:ellipsis;}
+
+
+	

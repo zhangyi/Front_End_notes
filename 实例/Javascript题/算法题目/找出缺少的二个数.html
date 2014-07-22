@@ -1,0 +1,30 @@
+<HTML>
+<BODY>
+<meta http-equiv='content-type' content='text/html;charset=utf-8' />
+<SCRIPT type='text/javascript'>
+<!--
+var n=500000;//n是常数,不算临时变量。
+var ar=[];//这是输入数据，不算临时变量
+for(var i=0;i<n;i++){
+    ar.push(i+1)
+}
+//i是生成输入数据使用的，不算临时变量
+//随机抽取掉两个数
+document.write("抽掉的第1个数是："+ar.splice(Math.floor(Math.random()*ar.length),1))
+document.write("<br>抽掉的第2个数是："+ar.splice(Math.floor(Math.random()*ar.length),1))
+//打乱顺序
+ar.sort(function(){return Math.random()-.8})
+//使用了3个临时变量
+var t1=0,t2=0,t3;
+for(t3=ar.length-1;t3>=0;t3--){
+    t1=t1+ar[t3];
+    t2=t2+(t3+1)*(t3+1)-ar[t3]*ar[t3];
+}
+t2=t2+n*n*2-n*2+1;
+var t4 = (n+1)*n/2;
+var t5 = t4 - t1;
+document.write("<br>计算得到两个数是：<br>"+(t5+Math.sqrt(2*t2-t5*t5))/2+"<br>"+(t5-Math.sqrt(2*t2-t5*t5))/2)
+//-->
+</SCRIPT>
+</BODY>
+</HTML>

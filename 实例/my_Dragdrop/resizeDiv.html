@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:silverna="http://silverna.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>DragTest</title>
+	<script src="js/silverna-packs.js"></script>
+	<script>
+	function test()
+	{
+		var bav = new core.web.widgets.adorners.behaviors.DragBehavior();
+		bav.addKnobs($$("test"));
+		bav.shadow = 30;
+		bav.dragMode = "virtual";
+		bav.ondragstart = function(evt){
+			evt.knob.setCursor("nw-resize");
+		}
+		bav.ondrag = function(evt){
+			evt.preventDefault();
+			var w = evt.pageX + this.offsetRight;
+			var h = evt.pageY + this.offsetBottom;
+			evt.target.style.width = (w > 0?w:0) + "px";
+			evt.target.style.height = (h > 0?h:0) + "px";
+		}
+		bav.ondragend = function(evt){
+			evt.knob.setCursor("default");
+			window.CollectGarbage();
+		}
+		bav.active();
+	}
+	</script>
+</head>
+<body onload="test()">
+<div id ="test" style="border: solid 1px #3377cc; width:100px; height:100px;"><div style="width:100%;height:100%;background:#3377CC">abc</div></div>
+</body>
+</html>

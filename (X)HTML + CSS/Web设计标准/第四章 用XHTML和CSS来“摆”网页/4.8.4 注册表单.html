@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>注册表单</title>
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	padding:15px;
+}
+#regForm{
+	width:340px;
+}
+#regForm fieldset{
+	padding:0 20px 10px; 
+	border:0; 
+	border-top:1px #D0D0BF solid;
+}
+#regForm legend{
+	padding:0 10px;
+	font-weight:bold;
+}
+#regForm .dataArea{
+	float:left;
+	padding:2px 0;
+}
+#regForm .dataArea input{
+	float:left;
+	width:150px;
+}
+#regForm .frist{
+	padding:8px 0 2px;
+}
+#regForm label{
+	float:left;
+	width:110px;
+	text-align:right;
+	padding:3px 0 0;
+}
+
+#regForm .subArea{
+	padding:0 0 0 130px;
+}
+#regForm .subArea input{
+	padding:1px 4px;
+}
+</style>
+</head>
+
+<body>
+<form id="regForm">
+	<fieldset>
+		<legend>登陆信息</legend>
+		<div class="dataArea frist">
+			<label for="username">用户名：</label><input class="input" type="text" id="username" />
+		</div>
+		<div class="dataArea">
+			<label for="password">密码：</label><input type="password" id="password" />
+		</div>
+		<div class="dataArea">
+			<label class="hint" for="passwordVerify">确认密码：</label><input type="password" id="passwordVerify" />
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>个人信息</legend>
+		<div class="dataArea frist">
+			<label for="nickname">昵称：</label><input type="text" id="nickname" />
+		</div>
+		<div class="dataArea">
+			<label class="hint" for="email">电子邮箱：</label><input type="text" id="email" />
+		</div>
+	</fieldset>
+	<div class="subArea">
+		<input type="submit" value="注册" />
+		<input type="button" value="返回" />
+	</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>倒计时</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv='content-type' content='text/html;charset=utf-8' />
+ </head>
+
+ <body>
+   距公测开服时间，8月21日下午15:00  还剩<div id="LaveTime"></div>
+<script type="text/javascript">
+
+	var leaveHandler = function() {
+		var inner;
+		
+		var endTime = new Date(2010, 7, 21, 15, 0, 0),//活动结束时间:2010-8-21 15:00:00
+			intervalTimer = null,//定时器，时间到清除此定时器
+			leaveEl = document.getElementById("LaveTime");//需要显示时间的DOM对象
+
+		return inner = {
+			updateTime : function() {
+				var now = +new Date();
+				
+				var timeDesArr = [],
+					leaveTime = endTime - now;
+
+				if (leaveTime >= 0) {
+					var a = [1000*60*60*24, 1000*60*60, 1000*60, 1000],
+						b = ['天', '小时', '分', '秒'],
+						temp = null;
+
+					for (var i = 0, len = a.length; i<len ; i++ ) {
+						temp = Math.floor(leaveTime/a[i]);
+						if (temp > 0) {
+							timeDesArr.push(temp + b[i]);
+						}
+						leaveTime -= a[i]*temp;
+					}
+					
+					inner.setTime(timeDesArr.join(""));
+				} else {
+					clearInterval(intervalTimer);
+					intervalTimer = null;
+				}
+			},
+			setTime : function(des) {
+				if (leaveEl && des) {
+					leaveEl.innerHTML = des;
+				}
+			},
+			init : function() {
+				if (leaveEl) {
+					intervalTimer = setInterval(inner.updateTime, 1*1000);
+				}				
+			}
+		}
+	}().init();
+</script>
+ </body>
+</html>

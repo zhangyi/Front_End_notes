@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/commonReg/style/style.css" rel="stylesheet" type="text/css" />
+<title>注册成功--蜗牛网体验版--6000万玩家的虚拟世界</title>
+</head>
+<body>
+    <!-- q1 -->
+    <div>
+        <input type="button" value="你好" onclick="this.value = cutStr(this.value, 3);" /> gb2312 -》3 <br/>
+        <input type="button" value="你好world" onclick="this.value = cutStr(this.value, 9, 'utf8Length');" /> utf-8 -》9
+        <hr/>
+    </div>
+    <!-- q2 -->
+    <div>
+        <div id="dv1" style="background-color:yellow;">
+            <p>我是谁</p>
+        </div>
+        <div id="dv2" style="background-color:green;">
+            <p>我是神</p>
+        </div>
+        <input type="button" value="换" onclick="exchangeNode('dv1', 'dv2');">
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+
+    String.prototype.gb2312Length = function() {
+        return this.replace(/[^\x00-\xff]/g, '**').length;
+    };
+    String.prototype.utf8Length = function() {
+        return this.replace(/[^\x00-\xff]/g, '***').length;
+    };
+
+    String.prototype.uniSubstr = function(start, len, _fmt) {
+//        debugger
+        var i = 0, ss = start, tempStr, returnStr = "", a;
+        while (i < len) {
+            tempStr = this.substr(ss, 1);
+            a = tempStr[_fmt]();
+            i = i + a;
+            ss += 1;
+            
+            if (tempStr == "" || i>len) {
+                break;
+            }
+            returnStr += tempStr;
+        }
+        return returnStr;
+    };
+    //获取最大长度+".."格式的字符
+    String.prototype.uniLeft = function(len, suffix, _fmt) {
+        if (!suffix) {
+            suffix = "";
+        }
+
+        _fmt = _fmt || "gb2312Length";
+
+        return this[_fmt]()>len?this.uniSubstr(0, len-suffix[_fmt](), _fmt)+suffix:String(this);	//this.len 要> sufix.len
+    };
+
+
+    function cutStr(_str, _len, _fmt) {
+        return _str.uniLeft(_len, "", _fmt);
+    }
+
+    /////////////////////////////////////////////////////////////////////////
+    function exchangeNode(_a, _b) {
+        var _nodeA = document.getElementById(_a);
+        var _nodeB = document.getElementById(_b);
+
+        var _psA = _nodeA.getElementsByTagName("p");
+        var _psB = _nodeB.getElementsByTagName("p");
+
+        function _doExchange(_ps, _t) {
+            for(var i=0,l=_ps.length; i<l; i++) {
+                _t.appendChild(_ps[i]);
+            }
+        }
+
+        function _cacheDoms(_els) {
+            var ret = [];
+
+            for(var i=0,l=_els.length; i<l; i++) {
+                ret.push(_els[i]);
+            }
+
+            return ret;
+        }
+
+        __psA = _cacheDoms(_psA);
+        __psB = _cacheDoms(_psB);
+
+        _doExchange(__psA, _nodeB);
+        _doExchange(__psB, _nodeA);
+
+    }
+</script>

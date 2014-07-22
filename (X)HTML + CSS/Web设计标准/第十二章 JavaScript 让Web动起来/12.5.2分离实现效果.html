@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CH" xml:lang="zh-CH">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>下拉菜单</title>
+<script type="text/javascript">
+function extendNav() {
+	var navList = document.getElementById("nav").getElementsByTagName("li");
+	var navListLen=navList.length;
+	for (var i=0; i<navListLen; i++) {
+	   if (navList[i].getElementsByTagName("ul")[0]!=undefined){
+			addClass(navList[i],"hasChildNav")
+			navList[i].onmouseover=function(){
+				addClass(this,"sfhover");
+			}
+			navList[i].onmouseout=function(){
+				removeClass(this,"sfhover");
+			}
+		}
+	}
+}
+
+function addClass(element, className){
+	if (!element.className){
+		element.className=className;
+		}
+	else{
+		element.className+=" "+ className;
+	}
+}
+function removeClass(element, className){
+	if(element.className==className){
+		element.className="";
+		}
+	else{
+		var newClassName = '';
+		var arr= element.className.split(' ');
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] != className) {
+				if (i > 0){
+				newClassName += ' ';
+				}
+				newClassName += arr[i];
+			}
+		 }
+		element.className = newClassName;
+	}
+	//element.className=element.className.replace(new RegExp('(^|\\s*\\b[^-])'+className+'($|\\b(?=[^-]))', 'g'), '');
+}
+window.onload=extendNav;
+
+</script>
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+}
+#nav{
+	background:#efefef url(images/silver/nav_bg.gif) repeat-x left bottom;
+	padding:0 0 3px;
+	margin:20px 0;
+}
+#nav #innerNav{
+	background:#ccc url(images/silver/nav_bg.gif) repeat-x left top ;
+	padding:3px 20px 0;
+}
+#nav .navList{
+	float:left;
+	list-style-type:none;
+	line-height:27px;
+	padding:0 2px 0 0;
+	background: url(images/silver/li.gif) no-repeat center right;
+}
+#nav a.url{
+	display:block;
+	padding:0 10px 0 12px;
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:none;
+	color:#666;
+}
+#nav .hasChildNav .url{
+	background:url(images/silver/arrow.gif) no-repeat 100% 50% ;
+	margin-right:8px;
+}
+#selHome #navHome a.url,
+#selGuide #navGuide a.url,
+#selSignup #navSignup a.url,
+#selGroups #navGroups a.url,
+#selBrowse #navBrowse a.url{
+	color:#000;
+	background-color:#fff;
+	font-weight:bold;
+}
+
+.clearfix:after {
+    content: " "; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix{ height:1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+
+#nav .navList ul{
+	position:absolute;
+	left:-999em;
+	width:120px;
+	background-color:#FFF;
+	border:1px #999 solid;
+
+}
+#nav li.sfhover ul{
+	left:auto
+}
+#nav li:hover ul{
+	left:auto
+}
+
+#nav .navList li{
+	list-style-type:none;
+	float: left;
+	width:100%;
+	font-size:12px;
+}
+#nav .navList li a{
+	display:block;
+	padding-left:10px;
+	line-height:24px;
+}
+#nav .navList li a:hover{
+	color:#fff;
+	background-color:#888
+}
+/*#nav .navList .url{
+	background:url(images/silver/arrow.gif) no-repeat 100% 50% ;
+	margin-right:8px;
+}
+#nav .navList .url:only-child{
+	background:none no-repeat 100% 50% ;
+	margin-right:0;
+}*/
+</style>
+
+</head>
+
+<body id="selGuide">
+<div id="nav">
+	<ul id="innerNav" class="clearfix">
+		<li id="navHome" class="navList"><a class="url" href="#home">首页</a></li>
+		<li id="navGuide" class="navList"><a class="url" href="#guide">指南</a></li>
+		<li id="navSignup"class="navList"><a class="url" href="#signup">参与</a></li>
+		<li id="navGroups" class="navList"><a class="url" href="#groups">群组</a>
+			<ul>
+				<li><a href="1#a">最帅滴群组</a></li>
+				<li><a href="1#">最丑滴群组</a></li>
+			</ul>
+		</li>
+		<li id="navBrowse" class="navList"><a class="url" href="#browse">浏览</a>
+			<ul>
+				<li><a href="#">精彩推荐</a></li>
+				<li><a href="#">最近一周推荐照片</a></li>
+			</ul>
+		</li>
+	</ul>
+</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

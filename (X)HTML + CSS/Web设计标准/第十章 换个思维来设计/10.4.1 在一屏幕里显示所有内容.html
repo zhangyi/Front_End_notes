@@ -1,0 +1,175 @@
+<!-- hi IE,please go to Quirks Mode-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CH" xml:lang="zh-CH">
+<head>
+<title>Live.Favorites Layout</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="author" content="aoao" />
+<style type="text/css">
+*{
+	padding:0;
+	margin:0;
+}
+html,body {
+	height:100%;
+	overflow:auto;
+	font:12px/24px Verdana, Arial, Helvetica, sans-serif;
+	min-height:300px;
+}
+#header,#footer,#setting,#message,#content,#sortList,#selector{
+	position:absolute;
+}
+li{ list-style-type:none}
+#header{
+	top:0;
+	left:0;
+	width:100%;
+	color:#fff;
+	background:#073B7A url(images/live_header.gif) repeat-x left bottom;
+}
+#header h1{
+	text-align:center;
+	font: normal normal bold 24px/55px  Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	height:55px;
+}
+#header #operator{
+	padding-right:20px;
+	text-align:right;
+	color:#666;
+	background:#fff url(images/live_header.gif) repeat-x left bottom;
+}
+#footer{
+	bottom:0;
+	left:0;
+	width:100%;
+	text-align: center;
+
+}
+#setting{
+	top:80px;
+	left:200px;
+	right:10px;
+}
+#message{
+	top:110px;
+	left:200px;
+	right:10px;
+}
+#content{
+	top:140px;
+	left:200px;
+	right:10px;
+	bottom:30px;
+}
+#sortList{
+	top:80px;
+	left:10px;
+	width:186px;
+}
+#selector{
+	top:134px;
+	left:10px;
+	bottom:30px;
+	width:186px;
+}
+.inner{
+	border:1px #B7D8ED solid;
+	padding:0 5px;
+}
+#content .inner,#selector .inner{
+	height:100%;
+	overflow:auto;
+}
+#setting .inner,#message .inner{
+	height:24px;
+	overflow: hidden
+}
+
+.info{
+	margin:10px;
+	line-height:1.3em;
+}
+* html #content{
+	height:100%;
+	top:0;
+	bottom:0;
+	padding-top:140px;
+	padding-bottom:30px;
+}
+* html #selector{
+	height:100%;
+	top:0;
+	bottom:0;
+	padding-top:134px;
+	padding-bottom:30px;
+}
+#content,#selector{
+	z-index:10;
+}
+#header,#footer,#setting,#message,#sortList{
+	z-index:20;
+}
+
+</style>
+</head>
+<body>
+<div id="header">
+	<h1>Live.Favorites Layout</h1>
+	<p id="operator"><a href="#">选项</a> | <a href="#">导入</a> | <a href="#">导出</a> | <a href="#">帮助</a></p>
+</div>
+<div id="setting">
+	<div  class="inner">
+		<p>设置栏(比如添加、删除)</p>
+	</div>
+</div>
+<div id="message">
+	<div class="inner">
+		<p>欢迎学习 Windows Live Favorites 的布局！</p>
+	</div>
+</div>
+<div id="content">
+	<div  class="inner">
+		<h2>随时随地学习、偷创意和获取知识</h2>
+		<p>这只是个练习</p>
+	</div>
+</div>
+<div id="sortList">
+	<div class="inner">
+    <ul>
+      <li class="folder"><a href="#">显示文件夹</a></li>
+      <li class="tags"><a href="#">显示标签</a></li>
+    </ul>
+	</div>
+</div>
+<div id="selector">
+	<div class="inner">
+ 	  <p class="info">您可以按文件夹或标签查看收藏。添加或导入收藏以开始使用。</p>
+	</div>
+</div>
+<div id="footer">
+	<p>&copy; 2007 aoao</p>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

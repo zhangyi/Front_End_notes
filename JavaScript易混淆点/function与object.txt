@@ -1,0 +1,132 @@
+1: Function 和 function
+
+Code
+    alert(Function);
+    //function Function() {
+    //  [native code]
+    //}
+    alert(typeof Function); //function
+    alert(Function instanceof Object); // true
+   
+    function fun() { };
+    alert(typeof fun); //function
+    alert(fun.constructor == Function); //true
+    alert(fun instanceof Function); //true
+    alert(fun instanceof Object); //true
+
+  Function系统内置的function，用户定义的 function 都由它创建。并且他们都是"继承"于Object的.
+
+
+2: function 和 Object
+
+Code
+    function Class(){};
+
+    alert(typeof Class); //function
+    alert(Class.constructor == Function); //true
+    alert(Class instanceof Function); //true
+    alert(Class instanceof Object); //true
+    alert(typeof Class.prototype); //object
+
+    var c1 = new Class();
+    alert(typeof c1);  //object
+    alert(c1.constructor == Class); //true
+    alert(c1 instanceof Class); //true
+    alert(c1 instanceof Function); //false
+    alert(c1 instanceof Object); //true
+    alert(typeof c1.__proto__); //ie下为undefined firefox为object
+    alert(c1.__proto__ == Class.prototype); //ie下为flase firefox为true
+
+    function 是 Function 的一个实例，是继承与Object的，在具有Object对象的特征之外，还具有
+    1) 可以进行 new 操作，来模拟一些面向对象的功能， new 操作返回的是一个 object 对象。它是构造函数和Object对象的实例。
+    2) new Class() 操作的三个步骤
+        a) var c1 = new Object 对象
+        b) 新建的 c1 复制 原来 function Class 的所有属性和方法
+        c) c1.__proto__ = Class.prototype
+    3) 在c1中，把this 指向c1
+    //ie 中 看不到__proto__,不过应该有相应的隐藏值
+
+
+    3: 关于javascript中instanceof
+    在http://www.cnblogs.com/bmrxntfj/archive/2008/07/17/829833.html看到一个例子，很有意思
+   
+Code
+    function class1() { };
+    function class2() { };
+    class2.prototype = new class1();
+    function class3() { };
+    class3.prototype = new class2();
+    function class4() { };
+    class4.prototype = new class3();
+    function class5() { };
+    class5.prototype = new class4();
+       
+    var bj = new class4();
+       
+    //测试正常的继承关系   
+    alert(obj instanceof class5); //false
+    alert(obj instanceof class4); //true
+    alert(obj instanceof class3); //true
+    alert(obj instanceof class2); //true
+    alert(obj instanceof class1); //true
+
+    class3.prototype = new class5(); //改变继承关系
+
+    //测试改变后的继承关系
+    alert(obj instanceof class5); //false
+    alert(obj instanceof class4); //true
+    alert(obj instanceof class3); //false
+    alert(obj instanceof class2); //true  仍然是true
+    alert(obj instanceof class1); //true  仍然是true
+
+ 
+
+用下面代码进行测试 只在firefox 中有效
+
+ 
+
+Code
+    var _proto = obj.__proto__;
+
+    while (_proto) {
+            if (_proto == class1.prototype) {
+                alert("class1");
+            }
+            else if (_proto == class2.prototype) {
+                alert("class2");
+            }
+            else if (_proto == class3.prototype) {
+                alert("class3");
+            }
+            else if (_proto == class4.prototype) {
+                alert("class4");
+            }
+            else if (_proto == class5.prototype) {
+                alert("class5");
+            }
+            else if (_proto == Object.prototype) {
+                alert("Object");
+            } else {
+                alert("unknow");
+                alert(_proto.constructor);
+            }
+            _proto = _proto.__proto__;
+     }
+
+    正常继承关系
+    class4->class3->class2->class1->Object
+
+
+    改变后继承关系
+    class4->unknow->class2->class1->Object
+
+
+    instanceof 是在 _proto_链上的节点逐个进行比较，如果找到相等的节点，则返回true，否则返回false。
+
+    对于 unknow 对象 它的 _proto.constructor 显示为 "function class1() {}"
+    不过好像除Object， class4~class1的 _proto.constructor 都为 "function class1() {}"
+    对于这个还是不太明白，对于这一点确实有点不好理解，知道的的同学指点一下。
+    
+    
+    万物皆对象，new出来的东东它的类型应时object　　它是obejct的实例不是Function的实例
+    

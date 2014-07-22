@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title> :: Canvas Snake :: </title>
+    <style type="text/css">
+      canvas { border: 1px solid black; }
+    </style>
+	</head>
+	<body>
+		<canvas id="cvs" width="300" height="300"></canvas>
+	</body>
+</html>
+<script type="text/javascript">
+    	var canvas = document.getElementById('cvs');
+        if (canvas.getContext){
+          var ctx = canvas.getContext('2d');
+		  var cvs = document.getElementById("cvs");
+		  window.onkeydown = function(e) {
+		  		var ev = window.event || e;
+//		  		alert(ev.keyCode)
+		  		switch(ev.keyCode) {
+					case 37 :
+						GamePanel.left();
+						break;
+					case 38 :
+						GamePanel.up();
+						break;
+					case 39 :
+						GamePanel.right();
+						break;
+					case 40 :
+						GamePanel.down();
+						break;
+				}
+		  };
+        }
+		
+//		ctx.fillStyle = "rgba(255, 255, 0, .5)";
+//		ctx.beginPath();
+//		ctx.rect(15, 150, 120, 120);
+//		ctx.closePath();
+//		ctx.fill();
+
+		var GamePanel = function() {
+			var _gridSize = 10;
+			var _speed = 500;
+			var WIDTH = HEIGHT = 300;
+			var _MAX_X = 300 / _gridSize;
+			var _MAX_Y = 300 / _gridSize;
+			
+//			var _dots = [];
+			var _objs = [];
+			
+			function getRealScale(x,y) {
+				return {
+					x1 : x * _gridSize,
+					x2 : (x+1) * _gridSize,
+					y1 : y * _gridSize,
+					y2 : (y+1) * _gridSize
+				}
+			}
+			
+			function validatePos(_dot) {
+				var ret = _dot;
+				
+				if(_dot.x<0 || _dot.x>=_MAX_X || _dot.y<0 || _dot.y>=_MAX_Y) {
+					return null;
+				}
+//				debugger
+				var innerBreakFlag = false;
+				for (var ii in _objs) {
+					var _obj = _objs[ii];
+					var _dots = _obj instanceof Dot ? [_obj] : _obj.body;
+					for (var i = 0; i < _dots.length; i++) {
+						var _dt = _dots[i];
+						if (_dot.hit(_dt)) {
+							_dot = null;
+							innerBreakFlag = true;
+							break;
+						}
+					}
+					if(innerBreakFlag) break;
+				}
+				
+				return ret;
+			}
+			
+			function clear() {
+				ctx.clearRect(0, 0, WIDTH, HEIGHT);
+			}
+			
+			function remove(_this) {
+				for (var ii in _objs) {
+					var _obj = _objs[ii];
+					if(_obj instanceof Dot && _obj==_this) {
+						_objs.splice(ii,1);
+						break;
+					}					
+				}
+			}
+			
+			function refresh() {
+				clear();
+				for(var i in _objs) {
+					_objs[i]._draw();
+				}
+			}
+			
+			
+			
+			/////////////////////////////////////////
+			Dot = function(x,y) {
+				this.x=x;
+				this.y=y;
+//				this.isHead = head||false;
+			};
+			Dot.prototype = {
+				_draw : function() {
+//					clear();
+//debugger
+					ctx.fillStyle = this.getColor();
+					ctx.beginPath();
+					var _pos = getRealScale(this.x, this.y);
+					ctx.rect(_pos.x1, _pos.y1, _gridSize, _gridSize);
+					ctx.closePath();
+					ctx.fill();
+				},
+				getColor : function() {		//this.isHead ? "rgba(90, 90, 90,1)" : "rgba(125, 125, 125, .5)";
+					var r = ~~(Math.random()*255);
+					var g = ~~(Math.random()*255);
+					var b = ~~(Math.random()*255);
+					return "rgba("+r+","+g+","+b+", 1)";
+				},
+				hit : function(_refDot) {
+					if(this.x==_refDot.x && this.y==_refDot.y) {
+						this.$onHit();
+						_refDot.$onHit();
+						return true;
+					}
+					
+					return false;
+				},
+				$onHit : function() {
+//					debugger
+					console.log("HIT");
+				}
+			};
+			
+			SnakeDot = function(x,y,head) {
+				this.x=x;
+				this.y=y;
+				this.isHead=head||false;
+			};
+			SnakeDot.prototype = new Dot();
+			SnakeDot.prototype.$onHit = function() {
+//				debugger
+				if(this.isHead) {					
+					this.isFoodEat = true;
+				} else {
+					_snake.over();
+				}
+			};
+
+			
+			
+			var Snake = function() {
+				this.body = [new SnakeDot(1,1, true), new SnakeDot(0, 1)];
+				this.dir = Snake.DIRECTION.RIGHT;
+				
+				_objs.push(this);
+				return this;
+			};
+			Snake.prototype = {
+				go : function() {
+//					debugger
+					var _next = this.getNext();
+					if(_next) {
+						this.body[0].isHead = false;
+//						_next.isHead = true;
+						this.body.unshift(_next);
+						if (!_next.isFoodEat) {
+							this.body.pop();
+						}
+//						refresh();
+//						clear();
+//						this._draw();
+					}else{
+						this.over();
+					}
+				},
+				getNext : function() {
+					var _head = this.body[0];
+					var _next = null;
+					switch(this.dir) {
+						case Snake.DIRECTION.LEFT:
+							_next = validatePos(new SnakeDot(_head.x-1, _head.y, true));						
+							break;
+						case Snake.DIRECTION.RIGHT:
+							_next = validatePos(new SnakeDot(_head.x+1, _head.y, true));						
+							break;
+						case Snake.DIRECTION.UP:
+							_next = validatePos(new SnakeDot(_head.x, _head.y-1, true));						
+							break;
+						case Snake.DIRECTION.DOWN:
+							_next = validatePos(new SnakeDot(_head.x, _head.y+1, true));						
+							break;
+					}
+					
+					return _next;
+				},
+				up : function(){if(this.dir==Snake.DIRECTION.DOWN)return;this.dir = Snake.DIRECTION.UP;this.step();},
+				down : function(){if(this.dir==Snake.DIRECTION.UP)return;this.dir = Snake.DIRECTION.DOWN;this.step();},
+				left : function(){if(this.dir==Snake.DIRECTION.RIGHT)return;this.dir = Snake.DIRECTION.LEFT;this.step();},
+				right : function(){if(this.dir==Snake.DIRECTION.LEFT)return;this.dir = Snake.DIRECTION.RIGHT;this.step();},
+				_draw : function() {
+					for(var _i in this.body) {
+						this.body[_i].getColor = function() {
+//							debugger
+							return this.isHead ? "rgba(90, 90, 90,1)" : "rgba(125, 125, 125, .5)";
+						};
+						this.body[_i]._draw();
+					}
+				},
+				over : function() {					
+					alert("OVER L");
+					clearInterval(this._tmr);
+					_over();										
+				},
+				$onOver : function() {},
+				step:function() {
+					clearInterval(this._tmr);
+					this.go();
+					this.start();
+				},
+				start : function() {
+					var me = this;
+					this._tmr = setInterval(function(){
+						me.go();
+					}, _speed);
+				}
+			};
+			Snake.DIRECTION = {
+				UP : 1,
+				RIGHT : 2,
+				LEFT : 4,
+				DOWN : 8
+			};
+			
+			
+			
+			
+			
+			FoodFactory = function() {
+				var currentFood = null;				
+				
+				function Food(_dot) {
+					this.x = _dot.x;
+					this.y = _dot.y;
+										
+					_objs.push(this);
+					currentFood = this;
+					
+//					refresh();					
+				}
+				Food.prototype = new Dot();
+				Food.prototype.$onHit = function() {
+					remove(this);
+					
+					create();
+				};
+				
+				
+				
+				function create() {
+					var x = ~~(Math.random()*_MAX_X);
+					var y = ~~(Math.random()*_MAX_Y);
+					
+					var _tmpFood = validatePos(new Dot(x, y));
+					while(!_tmpFood) {
+						x = ~~(Math.random()*_MAX_X);
+						y = ~~(Math.random()*_MAX_Y);
+						_tmpFood = validatePos(new Dot(x, y));
+					}
+					
+					new Food(_tmpFood);					
+				}
+				
+				return {
+					start : function() {
+						create();
+					}
+				}
+			}();
+			
+			
+			var STATUS = {
+				OVER : 0,
+				START : 1
+			};
+			var _snake;
+			var $_timer=null;
+			var GAME_STATUS = STATUS.START;
+			function _init() {							
+				_snake = new Snake();
+				_snake.start();
+								
+				FoodFactory.start();
+				
+				$_timer = setInterval(refresh, 1000/12);
+//				var _food = FoodFactory.create();
+			}
+			
+			function _over() {
+				if (GAME_STATUS != STATUS.OVER) {
+					clearInterval($_timer);
+				}
+			}
+			
+			return {
+				init : _init,
+				left:function(){_snake.left()},
+				right:function(){_snake.right()},
+				up:function(){_snake.up()},
+				down:function(){_snake.down()}
+			}
+		}();
+//debugger
+		GamePanel.init();
+</script>

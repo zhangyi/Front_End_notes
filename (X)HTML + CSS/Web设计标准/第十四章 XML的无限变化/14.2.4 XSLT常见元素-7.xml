@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="xsl/card-14.2.4-7.xsl" type="text/xsl" media="screen"?>
+<club>
+	<title>好孩子俱乐部</title>
+	<card xml:lang="zh">
+		<nickname>嗷嗷</nickname>
+		<website>
+			<name>样式之美</name>
+			<url>http://www.loaoao.com/</url>
+			<description>关于Web标准的一些学习记录</description>
+		</website>
+		<email>loaoao@gmail.com</email>
+	</card>
+	<card  xml:lang="zh-TW">
+		<nickname>子乌</nickname>
+		<website>
+			<name>子叶</name>
+			<url>http://sheneyan.com/</url>
+			<description>子乌的叶子</description>
+			<email />
+		</website>
+	</card>
+</club>

@@ -1,0 +1,76 @@
+@charset utf-8;
+
+* {margin:0; padding:0;}
+body {background-color:#FFFFFF; font:12px Tahoma,Verdana,Arial,Helvetica,sans-serif;}
+img {border:none;}
+
+a:link, a:visited, a:active {text-decoration:none;}
+a:hover {text-decoration:underline;}
+
+
+.header {width:100%; background:#FFFFFF url(images/header_bg.gif) repeat-x 0 0; text-align:center; }
+
+.header .cont {text-align:left; width:910px; margin:0 auto; padding-bottom:4px; position:relative; display:block;}
+.header .logo {width:517px; height:72px; display:inline-block; position:absolute; left:0; top:0; background:transparent url(images/logo.gif) no-repeat 0 0;}
+.header .logo:hover {text-decoration:none;}
+.header .links {height:72px; text-align:right;}
+.header .links .outerLink { padding-top:6px; color:#738197; line-height:16px;}
+.header .links .outerLink a {color:#738197; display:inline-block; }
+.header .links .outerLink span {padding:0 12px;}
+.header .links .outerLink a.global {background:transparent url(images/icons.gif) no-repeat scroll 0 0; padding-left:20px;}
+
+.header .cont .qqOnline {padding-top:26px;}
+.header .cont .qqOnline a {color:#000;}
+.header .cont .qqOnline a span {color:#DD5400; font-weight:bold;}
+
+.header .nav, .header .nav .navL, .header .nav .navM{height:36px; background:transparent url(images/vertical.gif) repeat-x scroll 0 -36px;}
+.header .nav .navL {background:transparent url(images/vertical.gif) no-repeat scroll 0 0;}
+.header .nav .navM {background:transparent url(images/icons.gif) no-repeat scroll right -146px;}
+.header .nav .navM .mainNav {position:absolute; padding-left:24px;}
+.header .nav .navM .lesser {text-align:right; padding:8px 12px 0 0;}
+
+.header .nav .navM .mainNav a.actived {background:transparent url(images/icons.gif) no-repeat scroll 0 -27px; color:#000;}
+.header .nav .mainNav a:link, .header .nav .mainNav a:visited, .header .nav .mainNav a:active {
+	color:#fff; font-size:14px; font-weight:bold; height:36px; line-height:36px; width:90px; margin-left:11px; text-align:center; display:inline-block;
+}
+
+.header .nav .lesser .feedback, .header .nav .lesser .help {
+	color:#fff; display:inline-block; line-height:18px; padding-left:24px; margin-left:12px;
+}
+
+.header .nav .lesser .feedback {background:transparent url(images/icons.gif) no-repeat 0 -78px;}
+.header .nav .lesser .help {background:transparent url(images/icons.gif) no-repeat 0 -111px;}
+
+.main {width:910px; margin:0 auto; text-align:left; clear:both;}
+.main .part1 {height:280px; overflow:hidden; margin-bottom:6px;}
+.main .part1 .flash {float:left; width:704px; height:280px;}
+.main .part1 .version {float:right; width:200px; height:280px; color:#213B4A; background:url(images/bgs.gif) no-repeat left top;}
+.main .part2 {clear:both; height:34px; margin-bottom:6px;}
+
+.main .part2 .modL, .main .part2 .modR, .main .part2 .modM {background:transparent url(images/middle_bar.gif) no-repeat 0 0; height:34px; line-height:34px;}
+.main .part2 .modR {background-position:right -68px;}
+.main .part2 .modM {background-position:0 -34px; background-repeat:repeat-x; margin:0 4px;}
+.main .part2 .modM a {margin-left:20px; color:#3372A2;}
+
+.main .part3 .left, .main .part3 .middle, .main .part3 .right  {height:220px; background-image:url(images/bgs.gif); background-repeat:no-repeat; float:left;}
+.main .part3 .left {width:258px; margin-right:6px; background-position:-200px 0;}
+.main .part3 .middle {width:320px; margin-right:6px; background-position:-458px 0;}
+.main .part3 .right {width:320px; background-position:-458px 0;}
+
+.main .part3 h2 {font-size:14px; color:#213B4A; line-height:29px; padding:2px 0; margin-left:25px;}
+.main .part3 ul {padding:5px 0 0 25px;}
+.main .part3 ul li {list-style:none; background:url(images/account_icons.gif) no-repeat; margin:0 0 5px; padding:1px 0 0 27px;}
+.main .part3 ul li a {line-height:23px; font-size:13px; text-decoration:none; color:#3372A2;}
+.main .part3 ul li.signup {background-position:0 3px;}
+.main .part3 ul li.protect {background-position:0 -22px;}
+.main .part3 ul li.find {background-position:0 -46px;}
+.main .part3 ul li.resume {background-position:0 -70px;}
+.main .part3 ul li.safe {background-position:0 -93px;}
+.main .part3 ul li.service {background-position:0 -116px;}
+
+.footer {width:910px; margin:0 auto; text-align:center; clear:both; height:73px;}
+.footer .padder {color:#9E9E9E; line-height:20px; padding-top:15px;}
+.footer .padder a {color:#9E9E9E;}
+
+
+

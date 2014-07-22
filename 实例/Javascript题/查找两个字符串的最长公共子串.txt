@@ -1,0 +1,117 @@
+﻿http://blog.csdn.net/cuixiping/archive/2009/07/01/4312536.aspx
+
+function findSubStr(s1,s2){ 
+    var S=sstr= "" ,L1=s1.length,L2=s2.length; 
+    if (L1>L2){ var s3=s1;s1=s2,s2=s3,L1=s2.length;} 
+    for ( var j=L1;j> 0 ;j--) 
+        for ( var i= 0 ;i<=L1-j;i++){ 
+            sstr = s1.substr(i,j); 
+            if (s2.indexOf(sstr)>= 0 ) return sstr; 
+        } 
+    return "" ; 
+} 
+document .writeln(findSubStr( "aaa3333" , "baa333cc" )); //aa333 
+document .writeln(findSubStr( "aaaX3333--" , "baa333ccX3333333x" )); //X3333 
+
+
+
+http://blog.9aisn.com/read.php/29.htm
+LCS问题就是求两个字符串最长公共子串的问题。解法就是用一个矩阵来记录两个字符串中所有位置的两个字符之间的匹配情况，若是匹配则为1，否则为0。然后求出对角线最长的1序列，其对应的位置就是最长匹配子串的位置。
+
+
+下面是字符串21232523311324和字符串312123223445的匹配矩阵，前者为X方向的，后者为Y方向的。不难找到，红色部分是最长的匹配子串。通过查找位置我们得到最长的匹配子串为：21232
+
+
+0    0    0    1    0    0    0    1    1    0    0    1    0    0    0
+0    1    0    0    0    0    0    0    0    1    1    0    0    0    0
+1    0    1    0    1    0    1    0    0    0    0    0    1    0    0
+0    1    0    0    0    0    0    0    0    1    1    0    0    0    0
+1    0    1    0    1    0    1    0    0    0    0    0    1    0    0
+0    0    0    1    0    0    0    1    1    0    0    1    0    0    0
+1    0    1    0    1    0    1    0    0    0    0    0    1    0    0
+1    0    1    0    1    0    1    0    0    0    0    0    1    0    0
+0    0    0    1    0    0    0    1    1    0    0    1    0    0    0
+0    0    0    0    0    0    0    0    0    0    0    0    0    1    0
+0    0    0    0    0    0    0    0    0    0    0    0    0    1    0
+0    0    0    0    0    1    0    0    0    0    0    0    0    0    0
+0    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+但是在0和1的矩阵中找最长的1对角线序列又要花去一定的时间。通过改进矩阵的生成方式和设置标记变量，可以省去这部分时间。下面是新的矩阵生成方式：
+
+
+0    0    0    1    0    0    0    1    1    0    0    1    0    0    0
+0    1    0    0    0    0    0    0    0    2    1    0    0    0    0
+1    0    2    0    1    0    1    0    0    0    0    0    1    0    0
+0    2    0    0    0    0    0    0    0    1    1    0    0    0    0
+1    0    3    0    1    0    1    0    0    0    0    0    1    0    0
+0    0    0    4    0    0    0    2    1    0    0    1    0    0    0
+1    0    1    0    5    0    1    0    0    0    0    0    2    0    0
+1    0    1    0    1    0    1    0    0    0    0    0    1    0    0
+0    0    0    2    0    0    0    2    1    0    0    1    0    0    0
+0    0    0    0    0    0    0    0    0    0    0    0    0    1    0
+0    0    0    0    0    0    0    0    0    0    0    0    0    1    0
+0    0    0    0    0    1    0    0    0    0    0    0    0    0    0
+0    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+不用多说，你大概已经看出来了。当字符匹配的时候，我们并不是简单的给相应元素赋上1，而是赋上其左上角元素的值加一。我们用两个标记变量来标记矩阵中值最大的元素的位置，在矩阵生成的过程中来判断当前生成的元素的值是不是最大的，据此来改变标记变量的值，那么到矩阵完成的时候，最长匹配子串的位置和长度就已经出来了。
+
+这样做速度比较快，但是花的空间太多。我们注意到在改进的矩阵生成方式当中，每生成一行，前面的那一行就已经没有用了。因此我们只需使用一维数组即可。最终的代码如下：
+
+<html>
+<head>
+<title>LCS</title>
+<script>
+
+function LCS(str_1, str_2){
+    if (str_1 == "" || str_2 == ""){
+        return "";
+    }
+    var c = new Array(str_1.length); //记录矩阵某一行状态的数组
+    var max = 0; //记录最大长度
+    var maxi = 0; //记录最大长度在str_1中的位置
+    //str_1横排(位置用i标记)    str_2竖排(位置用j标记)
+    for (var j = 0; j < str_2.length; j++){
+        //从上到下依次在列中取一个字符
+        for (var i = str_1.length - 1; i >= 0; i--){
+            //从右到左依次在行中取一个字符(为什么要从右到左？见下)
+            if (str_1.charAt(i) == str_2.charAt(j)){
+                //拿行的第i个字符跟列的第j个字符比较
+                if (i == 0 || j == 0){
+                    c[i] = 1;
+                }
+                else{
+                    c[i] = c[i - 1] + 1;
+                    //这就是为什么要从右到左，因为要用到前一个位置的值，从左到右就覆盖了这个值
+                }
+            }
+            else{
+                c[i] = 0;
+            }
+            if (c[i] > max){
+                max = c[i];
+                maxi = i;
+            }
+        }
+    }
+    if (max == 0){
+        return "";
+    }
+    return str_1.substr(maxi - max + 1, max); //获得最长公共子串
+}
+//根据页面输入，输出LCS
+function get_same_str(){
+    var str1 = document.form1.str1.value;
+    var str2 = document.form1.str2.value;
+    document.getElementById("result").innerHTML = "最长子字符串为:<font color='red'>" + LCS(str1, str2) + "</font>";
+}
+</script>
+</head>
+<body>
+<form name="form1">
+<input type="text" name="str1"></input>与<input type="text" name="str2"></input> <input type="button" value="获取" onclick=get_same_str() ></input>
+</form>
+<div id="result"></div>
+</body>
+</html>

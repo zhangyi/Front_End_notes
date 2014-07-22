@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>检查数据</title>
+<script type="text/javascript">
+
+function checkData() {
+	var loginError = new Array(new Array(false,"帐号的长度不能少于6位！"),new Array(false,"密码的长度不能少于6位！"));
+	//var loginError = [[false,"帐号的长度不能少于6位！"],[false,"密码的长度不能少于6位！"]];
+	
+	var loginForm = document.getElementById("loginForm");
+	var username = document.getElementById("username");
+	var password = document.getElementById("password");
+	username.onkeyup=username.onblur=function(){
+	
+		if(username.value.length < 6){
+			addClass(this,"error");
+			loginError[0][0]=true;
+		}
+		else{
+			removeClass(this,"error");
+			loginError[0][0]=false;
+		}
+	}
+	password.onkeyup=password.onblur=function(){
+		if(password.value.length < 6){
+			addClass(this,"error");
+			loginError[1][0]=true;
+		}
+		else{
+			removeClass(this,"error");
+			loginError[1][0]=false;
+		}
+	}
+	loginForm.onsubmit=function(){
+		if(username.value.length < 6){
+			addClass(username,"error");
+			loginError[0][0]=true;
+		}
+		if(password.value.length < 6){
+			addClass(password,"error");
+			loginError[1][0]=true;
+		}
+		if(!document.getElementById("errorShow")){
+			var loginErrorShow=document.createElement("div");
+			loginErrorShow.setAttribute('id','errorShow');
+			this.getElementsByTagName("fieldset")[0].insertBefore(loginErrorShow,this.getElementsByTagName("div")[0])
+		}
+		else{
+			var loginErrorShow=document.getElementById("errorShow");
+		}
+		var errorShowUl=loginErrorShow.getElementsByTagName("ul")[0];
+		if(errorShowUl){
+			loginErrorShow.removeChild(errorShowUl);
+		}
+		if(loginError[0][0]||loginError[1][0]){
+			var loginErrorShowUl=document.createElement("ul");
+
+			loginErrorShow.appendChild(loginErrorShowUl);
+			for(var i=0;i<loginError.length;i++){
+				if(loginError[i][0]){
+					var loginErrorShowLi=document.createElement("li");
+					var loginErrorShowLiText=document.createTextNode(loginError[i][1]);
+					loginErrorShowLi.appendChild(loginErrorShowLiText);
+					loginErrorShowUl.appendChild(loginErrorShowLi);
+				}
+			}
+			return false;
+		}
+		
+		return true;
+	}
+}
+
+
+function addClass(element, className){
+	if (!element.className){
+		element.className=className;
+	}
+	else{
+		element.className+=" "+ className;
+	}
+}
+function removeClass(element, className){
+	if(element.className==className){
+		element.className="";
+	}
+	else{
+		var newClassName = '';
+		var arr= element.className.split(' ');
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] != className) {
+				if (i > 0){
+				newClassName += ' ';
+				}
+				newClassName += arr[i];
+			}
+		}
+		element.className = newClassName;
+	}
+}
+window.onload=checkData;
+
+</script>
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	padding:15px;
+}
+#loginForm fieldset{
+	padding:0 10px 10px;
+	border:1px #D0D0BF solid;
+}
+#loginForm fieldset div{
+	padding:2px;
+}
+#loginForm .frist{
+	padding:12px 2px 2px;
+}
+
+#loginForm .dataArea input{
+	width:150px;
+	padding:2px;
+	border:1px #7F9DB9 solid;
+}
+#loginForm .otherArea{
+	padding-left:48px;
+	font-size:75%;
+}
+#loginForm .subArea{
+	padding-left:48px;
+	font-size:12px;
+}
+#loginForm .subArea input{
+	border:1px #003C74 solid;
+	outline-top:1px #F1EFEB solid;
+	padding:1px 4px;
+	background:#FFF url(images/xp_style_button_bg.gif) repeat-x left bottom;
+}
+* html #loginForm .subArea input{
+	padding:3px 4px 0;
+}
+#loginForm .dataArea .error{
+	border:1px #F00 solid;
+}
+#loginForm #errorShow ul{
+	border:1px #F00 solid;
+	padding:2px 5px;
+	background-color: #FD9F9F;
+	font-size:12px;
+	list-style-position:inside;
+}
+</style>
+</head>
+<body>
+<form id="loginForm">
+	<fieldset>
+	<legend>用户登录</legend>
+
+		<div class="dataArea frist">
+			<label for="username">用户：</label><input type="text" id="username" name="username"  />
+		</div>
+		<div class="dataArea">
+			<label for="password">密码：</label><input type="password" id="password" name="password" />
+		</div>
+		<div class="otherArea">
+			<input type="checkbox" id="persistent" />
+			<label for="persistent">在此计算机上保存我的信息</label>
+		</div>
+		<div class="subArea">
+			<input type="submit" value="登录" />
+			<input type="reset" value="重置" />
+		</div>
+			
+	</fieldset>
+	
+</form>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+/* CSS Document by aoao */
+*{
+	margin:0; padding:0;
+}
+body{
+	font:12px/1.6 Verdana, Arial, Helvetica, sans-serif;
+	color:#555;
+	background-color:#FFF;
+	text-align:center;
+}
+h1,h2,h3{
+	font: bold 12px/1.6 Verdana, Arial, Helvetica, sans-serif;
+}
+a:link{
+	color:#3068B5;
+}
+a:visited{
+	color:#333;
+}
+a:hover,a:focus,a:active{
+	color:#FE6100;
+}
+table{
+	border-collapse:collapse
+}
+#wrapper{
+	width:776px;
+	margin:0 auto;
+	text-align: left;
+}
+/*header*/
+#header{
+	height:68px;
+	position:relative;
+	background:#FAFBFD url(../images/page_banner_chunk.jpg) repeat-x left bottom;
+}
+#logo{
+	position:absolute;
+	width:50%;
+	z-index:1;
+	top:0;
+	left:0;
+	text-align:left;
+}
+
+#search{
+	position:absolute;
+	top:16px;
+	left:20%;
+	width:60%;
+	z-index:2;
+}
+#userInfo{
+	position:absolute;
+	top:0;
+	right:0;
+	text-align:right;
+	width:50%
+}
+#search fieldset{
+	border:0;
+	text-align:center
+}
+
+#userInfo .logo{
+	float:right;
+	display:inline;
+	margin:4px 6px;
+	border:1px solid;
+	padding:1px;
+}
+#skip{
+	position:absolute;
+	z-index:3;
+	left:0;
+	top:-24px;
+	width:100%;
+	height:26px;
+	text-align:center;
+	background:#FAFBFD url(../images/page_banner_chunk.jpg) repeat-x 0 -37px;
+	opacity:.9;
+	-moz-opacity:.9;
+	-khtml-opacity:.9;
+	filter:alpha(opacity=90);	
+}
+#skip:hover{
+	top:0;
+}
+.hide{
+	overflow:hidden;
+	height:0;
+}
+legend.hide{ display:none}
+
+#content{
+	float:right;
+	width:620px;
+}
+#sidebar{
+	float:left;
+	width:146px;
+}
+#nav{
+	clear:both;
+	border-color:#E6EEF9;
+	border-style:solid;
+	border-width:4px 0;
+	background-color:#97BAE4;
+}
+#nav li{
+	float:left;
+	display:inline;
+	margin-left:12px;
+}
+#nav li a{
+	float:left;
+	padding:4px 8px 4px 26px;
+	text-decoration:none;
+	font-weight:bold;
+	color:#fff;
+	background:#97BAE4 url(../images/nav_li.gif) no-repeat left center;
+}
+#nav li#navPost a{ background-position:-200px 50%}
+#nav li#navMsg a{ background-position:-400px 50%}
+#nav li#navAccount a{ background-position:-600px 50%}
+#nav li#navHelp a{ background-position:-800px 50%}
+
+.clearfix:after,
+#nav:after,
+#main:after{
+    content: " "; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+.clearfix,#nav,#main{display: inline-block;}
+* html .clearfix,* html #nav,* html #main{height: 1%;}
+.clearfix,#header,#nav,#main{display: block;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

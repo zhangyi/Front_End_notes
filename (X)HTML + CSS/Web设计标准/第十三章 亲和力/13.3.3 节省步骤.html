@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>表单</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+function testForm() {
+	var formSelect = document.getElementById("formSelect");
+	formSelect.onchange=function(){
+		if(this.value){
+		document.getElementById("form").submit();
+		}
+	}
+	document.getElementById("formSubmit").style.display="none";
+}
+window.onload=testForm;
+
+</script>
+</head>
+
+<body>
+<form id="form" action="#" method="get">
+	<select id="formSelect" name="formSelect" >
+		<option value="">选择真正的我</option>
+		<option value="me">传说中的我</option>
+		<option value="aoao">嗷嗷</option>
+		<option value="liujie">刘杰</option>
+	</select>
+	
+	<input type="submit" id="formSubmit" value="查询" />
+</form>
+</body>
+</html>

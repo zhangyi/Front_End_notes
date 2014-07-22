@@ -1,0 +1,26 @@
+/* CSS Document by aoao */
+*{
+	margin:0; padding:0;
+}
+body{
+	font:12px/1.6 Verdana, Arial, Helvetica, sans-serif;
+	color:#555;
+	background-color:#FFF;
+	background:#E2D9CA url(../images/bg.jpg) repeat-y center top;
+	text-align:center;
+}
+a:link{
+	color:#0033CF;
+}
+a:visited{
+	color:#333;
+}
+a:hover,a:focus,a:active{
+	color:#FF0084;
+	text-decoration:none
+}
+#wrapper{
+	width:100%;
+	margin:0 auto;
+	background:url(../images/header_bg.jpg) no-repeat center top;
+}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet href="xsl/feed-4.xsl" type="text/xsl" media="screen"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+	<title>样式之美</title>
+	<link>http://www.loaoao.com</link>
+	<description><![CDATA[CSS是用来玩滴]]></description>
+	<language>zh-cn</language>
+	<generator>aoao</generator>
+	<item>
+		<title>学完了xhtml+css之后要学什么呢？(魔兽版) </title>
+		<link>http://www.loaoao.com/blog/entry/29/</link>
+		<category>Blog</category>
+		<description><![CDATA[这几天心情烦燥，自己的作业倒没怎样写，反而写了这篇魔兽版的东东发在经典，当成版主的作业吧。学完了xhtml+css之后要学什么呢？这个问题我已经给人问过了好多回了。其实我只想回问一句你真的学完了吗？…]]></description>
+		<content:encoded><![CDATA[<p>这几天心情烦燥，自己的作业倒没怎样写，反而写了这篇魔兽版的东东发在经典，当成版主的作业吧。学完了xhtml+css之后要学什么呢？这个问题我已经给人问过了好多回了。其实我只想回问一句你真的学完了吗？</p>
+<p> 打个比方。比如打War3 不知道你会不会打呢？1 vs 1 的战场上一定会有一个人输。为什么呢？war3任何一个族都有十几种兵。每种兵都是不同的血，不同的攻击，不同的防御。掌握得到细节才能立于不败。</p>
+<p> 一般新手都不会考虑那样多。只要兵多点，以人海作战。div一片倒。打得多了就聪明点。比如当对手出火枪时就想一下要出什么兵对应。用用h 用用p等。打得更多点的就开始研究一下。比如蜘蛛出来有多少血，攻击多少。li默认的margin padding 等等。打得更更多点的又接着研究。比如小鹿配什么兵去打好一点呢 光环是干啥。药水是干啥。研究一下不同元素的搭配应用。h3+ul 还是h3+ol好一点，或者table最好。打得更更更多点的又接着研究。比如什么时候打什么怪升级最快，建筑应该怎样建，要不要定义热键。CSS 对应的是什么。。来。大伙猜猜。 接着着。研究各种各种可以玩的东西。已经不再为了打胜战为第一目标了。在过程中寻找快乐。比如做做CSS特效等。</p>
+<p> 突然有一天，我发现。其实我压根的不了解War3</p>]]></content:encoded>
+		<guid>http://www.loaoao.com/blog/entry/32/</guid>
+		<pubDate>Sun, 2 Apr 2007 16:23:39 GMT</pubDate>
+	</item>
+	<item>
+		<title><![CDATA[百分比的细节－－容器背景图片篇]]></title>
+		<link>http://www.loaoao.com/blog/entry/28/</link>
+		<description><![CDATA[ background-position 的值可以是长度单位，百分比，或者关键字。    长度单位比较好理解。多少就多少，正的就正，负的就负的。而关键字的中left top就是0% center 就是50% right bottom就是100%，那百分比是怎样算的呢？   假如是 background-position:50% 0 的话，就是容器的左上角开始的坐标(50%,0) 和背景图的左上角开始的坐标(50%,0)的位置 同点 处，但这样的说法好像比较不好计算。  或者换个说法比较容易理解： 容器的宽减去...]]></description>
+		<content:encoded><![CDATA[<p>background-position 的值可以是长度单位，百分比，或者关键字。</p>
+<p> 长度单位比较好理解。多少就多少，正的就正，负的就负的。而关键字的中left top就是0% center 就是50% right bottom就是100%，那百分比是怎样算的呢？</p>
+<p>假如是 background-position:50% 0 的话，就是容器的左上角开始的坐标(50%,0) 和背景图的左上角开始的坐标(50%,0)的位置<strong>同点</strong>处，但这样的说法好像比较不好计算。<br />
+或者换个说法比较容易理解： 容器的宽减去背景图的宽，再乘 50% ，高的计算也一样。</p>
+<p> 比如 容器宽 1000px 背景图宽 800px：<br />
+如果background-positionX 是50%时，就是 ( 1000px - 800px ) * 50% = 100px；<br />
+如果background-positionX 是-50%时，就是 (1000px - 800px ) *-50% = -100px。 </p>
+<p>又比如 容器宽 600px 背景图宽 800px ：<br />
+如果background-positionX 是 50% 时，就是 ( 600px - 800px ) * 50% = -100px；<br />
+如果background-positionX 是 -50% 时，就是 (600px - 800px ) *-50% = 100px 。<br />
+</p>
+<p>最后一种就会出现就算是使用负的百分比也让容器的背景图左边为空或者出现背景色，百分比真是奇妙！</p>
+<p>对于百分比使用后出现小数部分的可以参考我写的另一篇：<a title="点击查看详细" href="http://www.loaoao.com/blog/entry/23/">百分比的细节－－容器大小篇</a>。</p>]]></content:encoded>
+
+		<category>blog</category>
+		<guid>http://www.loaoao.com/blog/entry/28/</guid>
+		<pubDate>Fri, 20 Apr 2007 02:09:36 GMT</pubDate>
+	</item>
+	<item>
+		<title><![CDATA[利用text-align:justify完成单行文字两端对齐]]></title>
+		<link>http://www.loaoao.com/blog/entry/27/</link>
+		<description><![CDATA[text-align:justify只能对多行中的非最后一行进行两端对齐。对于单行自己没办法，IE有text-justify 可以解决问题，对了非IE的我的方式比较垃圾，因为只在特殊场合下才会用， 看一下测试页面 。   .justify{  height:1.1em;  overflow:hidden;  text-align:justify;  text-justify :distribute-all-lines;  }  div.cn:after {  content: &quot;__________________________________________&quot;;  font-size:100px;  }    对了非I...]]></description>
+		<content:encoded><![CDATA[<p>text-align:justify只能对多行中的非最后一行进行两端对齐。对于单行自己没办法，IE有text-justify 可以解决问题，对了非IE的我的方式比较垃圾，因为只在特殊场合下才会用，<a href="http://lab.loaoao.com/test/text/one-line-justify/">看一下测试页面</a>。</p>
+<code>.justify{<br />
+height:1.1em;<br />
+overflow:hidden;<br />
+text-align:justify;<br />
+text-justify :distribute-all-lines;<br />
+}<br />
+div.cn:after {<br />
+content: &quot;__________________________________________&quot;;<br />
+font-size:100px;<br />
+} </code>
+<p>对了非IE的我是使用content还增加内容达到有第二行，才会在第一行两端对齐。</p>
+<p>不过各浏览器对中文的理解不一样。Firefox 是直接分割中文，Opera不会分割中文，只认空格，要是在中文中间插点半角的英文或者标号它还会对不齐，safari接近Opera。都是不加空格没法分</p>
+<p>英文比较好，因为大家只能用空格分来单词，不过IE用text-justify :distribute-all-lines来分真是难看得要命。本来想过用htc或者js帮IE，可是发现,IE6好笨的说，家里没IE7不知道怎样。</p>
+<p>或者敲空格是一种比较好的方式，可firefox这种只放大文本的浏览器一放大文字就XX了，我写的那个烂方法也只有在一定的情况下有用，想起一句话：<strong>珍惜生命，远离Firefix!</strong></p>]]></content:encoded>
+		<category>Blog</category>
+		<guid>http://www.loaoao.com/blog/entry/27/</guid>
+		<pubDate>Sat, 14 Apr 2007 04:38:59 GMT</pubDate>
+
+	</item>
+	<item>
+		<title><![CDATA[Vista Aero Web版]]></title>
+		<link>http://lab.loaoao.com/demo/effect/vista/aero/</link>
+		<description><![CDATA[  本来这个是小站新风格的一小部分，不过最近超级忙，改风格最少要三个月后的事了。 效果很简单，抄Aero的，还差三张png 的图没做，那复杂的光线，边框也没做，这个的原理是用两张一样的图片，把其中一张模糊一下，再让背景fixed就搞定。IE6不支持fixed，达不到我想要的效果，有想过用JS在window的onscroll和onresize每次都重新计算背景，不过理论上可能会卡或者延时，不大写想，我自己的小站一直BS IE5~6，总是做特别的处理。之前...]]></description>
+		<content:encoded><![CDATA[本来这个是小站新风格的一小部分，不过最近超级忙，改风格最少要三个月后的事了。
+
+效果很简单，抄Aero的，还差三张png 的图没做，那复杂的光线，边框也没做，这个的原理是用两张一样的图片，把其中一张模糊一下，再让背景fixed就搞定。IE6不支持fixed，达不到我想要的效果，有想过用JS在window的onscroll和onresize每次都重新计算背景，不过理论上可能会卡或者延时，不大写想，我自己的小站一直BS IE5~6，总是做特别的处理。之前也一直试过用<a href="http://lab.loaoao.com/demo/effect/vista/aero/filter/">滤镜做的Aero</a>，可惜非IE的都想不到办法，还是图片安全。]]></content:encoded>
+		<category>Lab</category>
+		<guid>http://www.loaoao.com/lab/entry/11/</guid>
+		<pubDate>Sun, 08 Apr 2007 06:45:00 GMT</pubDate>
+
+	</item>
+	<item>
+	<title><![CDATA[一个在线测试k750和N70访问网站效果]]></title>
+		<link>http://www.loaoao.com/blog/entry/24/</link>
+		<description><![CDATA[ 推荐一下，  MobiReady  ，除了提供各种数据和有用建议，还可以在线测试k750和N70的效果，要JAVA支持，看下效果       传说中中文挂掉了，哎！还是用Device Emulator去。。  扩展阅读     media=&quot;handheld&quot; 为手持设备添加样式     CSS Mobile Profile 1.0     在PC机上安装Windows Mobile设备的模拟器    ]]></description>
+
+		<content:encoded><![CDATA[<p>推荐一下，<a href="http://ready.mobi/"><strong>MobiReady</strong></a>，除了提供各种数据和有用建议，还可以在线测试k750和N70的效果，要JAVA支持，看下效果</p>
+
+<p>传说中的中文挂掉了，哎！还是用Device Emulator去。。</p>
+扩展阅读
+<ul>
+    <li><a class="url" href="http://www.loaoao.com/blog/entry/4/">media=&quot;handheld&quot; 为手持设备添加样式</a></li>
+    <li><a href="http://www.w3.org/TR/css-mobile">CSS Mobile Profile 1.0</a></li>
+   <!-- <li><a href="http://www.windowsmobility.com.cn/Articles_view.aspx?articleid=24">在PC机上安装Windows Mobile设备的模拟器</a></li>-->
+</ul>]]></content:encoded>
+		<category>Blog</category>
+		<guid>http://www.loaoao.com/blog/entry/24/</guid>
+		<pubDate>Sat, 24 Mar 2007 04:06:43 GMT</pubDate>
+	</item>
+</channel>
+</rss>

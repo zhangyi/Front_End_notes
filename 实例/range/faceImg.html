@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UBB表情的插入</title>
+<script type="text/javascript" src="textRange.js"></script>
+<style type="text/css">
+	* {margin:0; padding:0;}
+	body {font:12px/1.3 Arial, Helvetica, sans-serif; background-color:#FFFFFF;}
+	ul, li {list-style:none}
+	img {border:none}
+	
+	.container {margin:30px;}
+	#txtDemo {width:475px; height:110px; word-break:break-all; word-wrap:break-word;}
+	#facePanel {border-width:1px 2px 2px 1px; border-color: #CCCCCC; border-style:solid; -webkit-border-radius: 6px; -moz-border-radius:6px; padding:6px; width:330px; margin-top:5px; display:none;}
+	#facePanel li{float:left; width:28px; height:28px; padding:0 5px 5px 0;}
+	#facePanel li a {display:block; text-decoration:none; border:1px dashed #DDD; width:26px; height:26px; line-height:26px; overflow:hidden; text-align:center;}
+	#facePanel li a:hover {border-color:#999;}
+	
+	#facePanel li a span {display:inline-block;}
+	#facePanel li a img {vertical-align:middle;}
+	
+	#facePanel ul {zoom:1;}
+	#facePanel ul:after{ content:"\0020"; display:block; height:0; line-height:0; clear:both; visibility:hidden;}
+</style>
+</head>
+<body>
+	
+<div class="container">
+	<div>
+		<textarea id="txtDemo"></textarea>
+	</div>
+	<button onclick="showFace(event);">插入表情</button>
+	<div id="facePanel">sadf</div>
+</div>
+
+<script type="text/javascript">
+	function $(id) {
+		return typeof id === 'string' ? document.getElementById(id) : id;
+	}
+	
+	function addEvent(el, type, handler) {
+		if(el.attachEvent) {
+			el.attachEvent("on" + type, handler);
+		} else if(el.addEventListener) {
+			el.addEventListener(type, handler, false);
+		}
+	}
+	
+	function removeEvent(el, type, handler) {
+		if(el.detachEvent) {
+			el.detachEvent('on' + type, handler);
+		} else if(el.removeEventListener) {
+			el.removeEventListener(type, handler, false);
+		}
+	}
+	
+	var faceInited = false;
+	
+	//显示表情
+	function showFace(ev) {
+		if(!faceInited) {
+			initFace();
+		}
+		
+		var facePanel= $("facePanel");
+		
+		facePanel.style.display = "block";
+		addEvent(document.body, 'click', hideFace);
+		addEvent(facePanel, 'click', cancelEventBubble);
+		
+		cancelEventBubble(ev);
+	}
+	
+	//隐藏表情
+	function hideFace() {
+		$("facePanel").style.display = "none";
+		removeEvent(document.body, 'click', hideFace);
+		removeEvent($("facePanel"), 'click', cancelEventBubble);
+	}
+	
+	//插入表情
+	function insertFace(elem) {
+		var txtElem = $("txtDemo"),
+			range = txtElem.getAttribute("range") ? txtElem.getAttribute("range").split("|") : [0, 0];
+		
+		var str_1 = txtElem.value.slice(0, range[0]);
+		var str_2 = txtElem.value.slice(range[1]);
+		
+		txtElem.value = str_1 + elem.getAttribute("value") + str_2;
+		
+		if(!document.selection) {
+			txtElem.selectionStart = txtElem.value.length;
+			txtElem.selectionEnd = txtElem.value.length;
+		} else {
+			var range = txtElem.createTextRange();
+	        range.collapse(1);
+	        range.moveStart("character", txtElem.value.length);
+	        range.moveEnd("character", txtElem.value.length);
+	        range.select();
+		}
+		
+		txtElem.focus();
+		
+		hideFace();
+	}
+	
+	//取消事件冒泡
+	function cancelEventBubble(ev) {
+		ev = ev || window.event;
+		
+		if(ev.stopPropagation) {
+			ev.stopPropagation();
+		} else if(!ev.cancelBubble) {
+			ev.cancelBubble = true;
+		}
+	}
+	
+	//记录textarea的选区的start&end
+	function savePos() {
+		var elem = $("txtDemo"),
+			range = getRange(elem);//获取选区
+		
+		elem.setAttribute("range", range.join("|"));
+		
+		document.title = "start:" + range[0] + "--" + "end:" + range[1];
+		
+		cancelEventBubble(arguments[0] || window.event);
+	}
+	
+	!(function() {
+		var txtElem = $("txtDemo");
+		
+		addEvent(txtElem, 'focus', savePos);
+		addEvent(txtElem, 'mouseup', savePos);
+		addEvent(txtElem, 'keyup', savePos);
+		addEvent(txtElem, 'mousemove', savePos);//Chrome 在选中文本域内的文字时，不能触发mouseup事件，导致range依旧为最近一次的range
+	})();
+	
+	//初始化表情
+	function initFace() {
+		var faces = [{"icon":"\u8db3\u7403","value":"[\u8db3\u7403]","src":"basic\/football.gif"},{"icon":"\u54e8\u5b50","value":"[\u54e8\u5b50]","src":"basic\/shao.gif"},{"icon":"\u7ea2\u724c","value":"[\u7ea2\u724c]","src":"basic\/redcard.gif"},{"icon":"\u9ec4\u724c","value":"[\u9ec4\u724c]","src":"basic\/yellowcard.gif"},{"icon":"\u54c8\u54c8","value":"[\u54c8\u54c8]","src":"basic\/laugh.gif"},{"icon":"\u5475\u5475","value":"[\u5475\u5475]","src":"basic\/smile.gif"},{"icon":"\u6cea","value":"[\u6cea]","src":"basic\/cry.gif"},{"icon":"\u6c57","value":"[\u6c57]","src":"basic\/sweat.gif"},{"icon":"\u7231\u4f60","value":"[\u7231\u4f60]","src":"basic\/love.gif"},{"icon":"\u563b\u563b","value":"[\u563b\u563b]","src":"basic\/tooth.gif"},{"icon":"\u54fc","value":"[\u54fc]","src":"basic\/hate.gif"},{"icon":"\u5fc3","value":"[\u5fc3]","src":"basic\/heart.gif"},{"icon":"\u6655","value":"[\u6655]","src":"basic\/dizzy.gif"},{"icon":"\u6012","value":"[\u6012]","src":"basic\/angry.gif"},{"icon":"\u86cb\u7cd5","value":"[\u86cb\u7cd5]","src":"basic\/cake.gif"},{"icon":"\u82b1","value":"[\u82b1]","src":"basic\/flower.gif"},{"icon":"\u6293\u72c2","value":"[\u6293\u72c2]","src":"basic\/crazy.gif"},{"icon":"\u56f0","value":"[\u56f0]","src":"basic\/sleepy.gif"},{"icon":"\u5e72\u676f","value":"[\u5e72\u676f]","src":"basic\/cheer.gif"},{"icon":"\u592a\u9633","value":"[\u592a\u9633]","src":"basic\/sun.gif"},{"icon":"\u4e0b\u96e8","value":"[\u4e0b\u96e8]","src":"basic\/rain.gif"},{"icon":"\u4f24\u5fc3","value":"[\u4f24\u5fc3]","src":"basic\/sad.gif"},{"icon":"\u6708\u4eae","value":"[\u6708\u4eae]","src":"basic\/moon.gif"},{"icon":"\u732a\u5934","value":"[\u732a\u5934]","src":"basic\/pig.gif"},{"icon":"\u8721\u70db","value":"[\u8721\u70db]","src":"basic\/candle.gif"}];
+		var imgURI = "http://timg.sjs.sinajs.cn/miniblog2style/images/common/face/";
+		var tempArr = [];
+		tempArr.push('<ul>');
+		
+		for(var i=0, len = faces.length; i<len; i++) {
+			tempArr.push([
+				'<li><a href="javascript:;" hideFocus="true" onclick="insertFace(this);return false;" value="' + faces[i].value + '" title="' + faces[i].icon + '"><img src="' + imgURI + faces[i].src + '" alt="' + faces[i].icon + '" /><span>&nbsp;</span></a></li>',
+			].join(""));
+		}
+		
+		tempArr.push('</ul>');
+		
+		$("facePanel").innerHTML = tempArr.join("");
+	}
+	
+	//获取选区
+	function getRange(elem) {
+		var start = 0, end = 0;
+			
+		if(!document.selection) {
+			start = elem.selectionStart;
+			end = elem.selectionEnd;
+		} else if(document.selection) {
+			var range = document.selection.createRange(),
+				range_all = document.body.createTextRange(),
+				i = 0;
+				
+			range_all.moveToElementText(elem);
+			
+			for(; range_all.compareEndPoints("StartToStart", range) < 0; start++) {
+				range_all.moveStart('character', 1);
+			}
+			
+			for(; i<start; i++) {
+				if(elem.value.charAt(i) == "\n") {
+					start++;
+				}
+			}
+			
+			range_all = document.body.createTextRange();
+			range_all.moveToElementText(elem);
+			
+			for(; range_all.compareEndPoints('StartToEnd', range) < 0; end++) {
+				range_all.moveStart('character', 1);
+			}
+			
+			for(i=0; i <= end; i++) {
+				if(elem.value.charAt(i) == "\n") {
+					end++;
+				}
+			}
+		}
+		
+		return [start, end];
+	}
+</script>
+
+</body>
+</html>

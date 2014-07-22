@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>闭合浮动元素</title>
+<style type="text/css">
+
+#floatholder{
+	background-color:#CCCCCC;
+}
+#floatbox{
+	float:left;
+	width:70px;
+	height:120px;
+	border:6px #68f solid
+}
+
+.clearboth{
+	clear:both;
+	height:0px;
+	overflow:hidden;
+}
+.clearfix:after {
+    content: " "; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+
+.clearfix {display: block;}
+/* End hide from IE-mac */
+</style>
+</head>
+
+<body>
+<div id="floatholder" class="clearfix">
+<div id="floatbox">浮动元素</div>
+跟在浮动元素后面的文字
+</div>
+</body>
+</html>

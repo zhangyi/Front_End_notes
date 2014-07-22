@@ -1,0 +1,94 @@
+whick的用法：
+	$(function(){
+		$("input").keyup(function(e){
+			alert(e.which);//得到的是ascall码
+		})
+	})
+	
+	$(function(){
+		$("a").mousedown(function(e){
+			alert(e.which)  // 1 = 鼠标左键 left; 2 = 鼠标中键; 3 = 鼠标右键
+			return false;//阻止链接跳转
+		})
+	})
+	
+	$(function(){//按住ctrl再按其它键
+		$("input").keyup(function(e){
+			alert(e.metaKey +" "+e.ctrlKey );
+			$(this).blur();
+		})
+	})
+	
+	
+triggerHandler : 
+	$(function(){
+	    $('#old').bind("click", function(){
+			$("input").trigger("focus");
+		});
+		$('#new').bind("click", function(){
+		    $("input").triggerHandler("focus");
+		});
+		$("input").focus(function(){
+            $("body").append("<p>focus.</p>");
+        })
+	})
+
+事件的一些类型：
+	$(function(){
+		$("a").click(function(event) {
+		  alert(event.type);//获取事件类型
+		  return false;//阻止链接跳转
+		});
+	})
+stop的参数要传入true
+	$("#panel").stop();//停止当前动画，继续下一个动画
+	$("#panel").stop(true);//清除元素的所有动画
+	$("#panel").stop(false,true);//让当前动画直接到达末状态 ，继续下一个动画
+	$("#panel").stop(true,true);//清除元素的所有动画，让当前动画直接到达末状态 
+	
+解决连续点击的问题：
+	!$v_show.is(":animated")
+序列化的问题
+    $.param({})
+	
+	
+如果改变DIV内容时，出现边框消失等情况  需要加上一个空的DIV overflow:hidden;height:1px; 可以参考个人空间的右侧的例子
+button 默认使用padding时在几大浏览器下不一样，需要使用*overflow:visible;  然后针对IE6使用hack样式 _padding-top:-3px;等
+
+
+关于css的一些hack
+p{+color:#f00;}                    支持 IE6 IE7        不支持FF IE8
+
+p{_color:#f00;}                    支持 IE6        不支持FF
+
+p{color:#00f !important;}
+p{color:#f00;}                      支持 IE7 IE6 FF IE8
+
+p{color:#00f !important;color:#f00;}      支持 IE7 IE8 FF       不支持 IE6
+
+head:first-child+body p{color:#f00;}      支持 IE7 IE8 FF       不支持 IE6
+
+/*\*//*/
+p{color:#f00;}
+/**/                                       支持 IE8        不支持IE6 IE7 FF
+
+html*p{color:#f00;}                支持 IE6 IE7        不支持FF IE8
+
+html>p{color:#f00;}               支持 IE7 IE8 FF       不支持 IE6
+
+html[xmlns] p{color:#f00;}       支持 IE7 IE8 FF       不支持 IE6
+
+@import 'style.css';
+@import "style.css"; 
+@import url(style.css);     
+@import url('style.css'); 
+@import url("style.css");          支持 IE7 IE6 FF IE8
+
+p{/*/*/color:#f00;/* */}         支持 IE6 IE7  FF      不支持 IE8
+
+* html  p {color:#f00;}            支持 IE6        不支持FF IE7 IE8
+
+*+html p {color:#f00;}            支持 IE7 IE8        不支持FF IE6
+
+p {*color:#f00;}                    支持 IE7 IE6        不支持FF IE8
+	

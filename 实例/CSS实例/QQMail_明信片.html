@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<style type="text/css">
+.tool {position:absolute;z-index:6;}
+
+#toolPhoto {width:49px;height:172px;overflow:hidden;cursor:default;}
+#toolPhoto .mytool {background:url(http://m48.mail.qq.com/zh_CN/htmledition/images/zoom_bar3476l.png) no-repeat;*background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='corp', src='http://m48.mail.qq.com/zh_CN/htmledition/images/zoom_bar3476l.png');width:98px;height:188px;}
+#toolPhoto .base {position:absolute;/*width:24px;height:24px;*/width:100%;height:100%;background:#fff;margin:12px 0 0 12px;opacity:0;filter:alpha(opacity=0);}
+#toolPhoto .zoom_base {position:absolute;}
+#toolPhoto .arrow_top {width:18px;height:16px;overflow:hidden;position:absolute;margin:0 0 0 15px;cursor:pointer}
+#toolPhoto .arrow_top .button_on {margin:0 0 0 -64px}
+#toolPhoto .arrow_bottom {width:18px;height:16px;overflow:hidden;position:absolute;margin:33px 0 0 15px;cursor:pointer}
+#toolPhoto .arrow_bottom .button_on {margin:-33px 0 0 -64px}
+#toolPhoto .arrow_left {width:15px;height:19px;overflow:hidden;position:absolute;margin:15px 0 0 0;cursor:pointer;cursor:pointer;}
+#toolPhoto .arrow_left .button_on {margin:-15px 0 0 -49px;}
+#toolPhoto .arrow_right {width:16px;height:19px;overflow:hidden;position:absolute;margin:15px 0 0 32px;cursor:pointer}
+#toolPhoto .arrow_right .button_on {margin:-15px 0 0 -81px}
+#toolPhoto .zoom_in {width:17px;height:17px;overflow:hidden;position:absolute;margin:61px 0 0 15px;cursor:pointer}
+#toolPhoto .zoom_in .button_on {margin:-61px 0 0 -64px;}
+#toolPhoto .zoom_out {width:17px;height:17px;overflow:hidden;position:absolute;margin:148px 0 0 15px;cursor:pointer}
+#toolPhoto .zoom_out .button_on {margin:-148px 0 0 -64px;}
+#toolPhoto .zoom_slot {width:17px;height:70px;position:absolute;margin:80px 0 0 15px;cursor:pointer;}
+#toolPhoto .zoom_bar {width:25px;height:16px;overflow:hidden;position:absolute;top:75px;margin:0 0 0 12px;cursor:url(/zh_CN/htmledition/images/openedcursor.cur),default;}
+#toolPhoto .zoom_bar .button_normal {margin:-172px 0 0 -12px;}
+#toolPhoto .zoom_bar .button_on {margin:-172px 0 0 -61px;}
+#toolPhoto .zoom_mask {position:absolute;left:0;top:0;width:100%;height:100%;background:#fff;opacity:0;filter:alpha(opacity=0);z-index:99;}
+
+#toolText {width:166px;height:31px;overflow:hidden;cursor:default;}
+#toolText .mytool {width:163px;height:87px;background:url(http://m48.mail.qq.com/zh_CN/htmledition/images/zoom_bar3476l.png) no-repeat;*background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='corp', src='http://m48.mail.qq.com/zh_CN/htmledition/images/zoom_bar3476l.png');}
+#toolTextColor, #toolTextSize {position:absolute;width:25px;height:18px;margin-top:5px;overflow:hidden;cursor:pointer;}
+#toolTextColor {margin-left:10px;}
+#toolTextColor .button_on, #toolTextColor .button_down {margin-left:-10px;}
+#toolTextSize {margin-left:38px;}
+#toolTextSize .button_on, #toolTextSize .button_down {margin-left:-38px;}
+#toolTextColor .button_on, #toolTextSize .button_on {margin-top:-67px;}
+#toolTextColor .button_down, #toolTextSize .button_down {margin-top:-36px;}
+
+#toolTextMenu {width:144px;*width:144;height:auto;*height:1px;left:0;top:0;padding-bottom:1px;*padding:0;}
+#toolTextMenu .mask {position:absolute;width:100%;height:100%;border:1px solid #000;background:#fff;opacity:0.65;filter:alpha(opacity=65);z-index:-1;border-top:0;}
+#toolTextMenu .menu {position:relative;cursor:default;}
+#toolTextMenu .menucolor {position:relative;width:16px;height:16px;*width:18px;}
+#toolTextMenu .button_on, #toolTextMenu .button_down {height:100%;width:100%;position:absolute;z-index:-1;}
+#toolTextMenu .button_on {background:#FFFF80;border:1px solid #000;opacity:0.5;filter:alpha(opacity=50);}
+#toolTextMenu .button_down {background:#000;border:1px solid #000;opacity:0.5;filter:alpha(opacity=50);}
+#toolTextMenuColor .item, #toolTextMenuColor .item_down {position:absolute;font-size:1px;width:10px;height:10px;margin:3px 0 0 3px;*margin:3px 0 0 4px;border:1px solid gray;}
+#toolTextMenuColor .item_down {border:1px solid #FFFFFF;}
+#toolTextMenuSize .item, #toolTextMenuSize .item_down {padding:4px 10px 0;}
+#toolTextMenuSize .item_down {color:#FFFFFF;}
+</style>
+
+ </head>
+
+ <body>
+
+<div id="layerMover">
+	<img src="http://res.qqmail.com/zh_CN/htmledition/images/postcard/photo/052.jpg" />
+</div>
+
+<!-- range start -->
+<div id="rangePhoto" class="flash" style="visibility:hidden;" unselectable="on"></div>
+<div id="rangeStamp" class="flash" style="visibility:hidden;cursor:pointer;" title="点击更换邮票" unselectable="on"></div>
+<div id="rangePostmark" class="flash" style="visibility:hidden;cursor:pointer;" title="点击更换邮戳" unselectable="on"></div>
+<div id="rangeText" class="flash" style="visibility:hidden;" unselectable="on"></div>
+<!-- range end -->
+<img src="http://res.qqmail.com/zh_CN/htmledition/images/postcard/tmp/jr_qixi/mask.png" />
+<!-- tool start -->
+<div id="toolPhoto" class="tool" unselectable="on" config="limitwidth:160px;" onMouseDown="return false;">
+	<div id="toolPhotoZoomBase" class="zoom_base mytool" unselectable="on"></div>
+	<div id="toolPhotoArrowTop" class="arrow_top" unselectable="on"><div unselectable="on"></div></div>
+	<div id="toolPhotoArrowLeft" class="arrow_left" unselectable="on"><div unselectable="on"></div></div>
+	<div id="toolPhotoArrowRight" class="arrow_right" unselectable="on"><div unselectable="on"></div></div>
+	<div id="toolPhotoArrowBottom" class="arrow_bottom" unselectable="on"><div unselectable="on"></div></div>
+	<div id="toolPhotoZoomIn" class="zoom_in" title="放大" unselectable="on"><div unselectable="on" class="mytool button_on"></div></div>
+	<div id="toolPhotoZoomOut" class="zoom_out" title="缩少" unselectable="on"><div unselectable="on"></div></div>
+	<div id="toolPhotoZoomSlot" class="zoom_slot" unselectable="on"></div>
+	<div id="toolPhotoZoomBar" class="zoom_bar" unselectable="on"><div class="mytool button_normal" unselectable="on"></div></div>
+	<div id="toolPhotoZoomMask" class="zoom_mask" unselectable="on" style="visibility:hidden;"></div>
+	<div class="mytool" unselectable="on"></div>
+</div>
+<div id="toolText" class="tool" style="visibility:hidden;" config="offsettop:-34px;offsetleft:-8px;" unselectable="on" onMouseDown="return false;">
+	<div id="toolTextColor" unselectable="on" title="字体颜色"><div unselectable="on"></div></div>
+	<div id="toolTextSize" unselectable="on" title="字体大小"><div unselectable="on"></div></div>
+	<div class="mytool" unselectable="on"></div>
+</div>
+<!-- tool end -->
+ </body>
+</html>

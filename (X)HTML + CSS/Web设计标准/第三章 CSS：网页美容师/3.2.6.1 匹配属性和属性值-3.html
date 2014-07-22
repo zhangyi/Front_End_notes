@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="zh" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>匹配属性和属性值</title>
+<style type="text/css">
+[title~=csser]{ font-weight:bold}
+span[title|=csser]{ color:red}
+</style>
+</head>
+<body>
+<p>
+<span title="csser aoao">title属性值为“csser aoao”的span元素</span><br />
+<span title="aoao csser">title属性值为“aoao csser”的span元素</span><br />
+<span title="csser:aoao">title属性值为“csser:aoao”的span元素</span><br />
+<span title="csser-aoao">title属性值为“csser-aoao”的span元素</span><br />
+<span title="aoao-csser">title属性值为“aoao-csser”的span元素</span>
+</p>
+</body>
+</html>

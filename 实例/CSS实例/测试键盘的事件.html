@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<style type="text/css">
+		.demo {border:1px solid #406c99; width:400px;min-height:500px;}
+	</style>
+ </head>
+
+ <body>
+ <div class="demo" id="demo"></div>
+<script type="text/javascript">
+	function $(id) {
+		return typeof id === "string" ? document.getElementById(id) : id;
+	}
+
+	document.onkeyup = function(ev) {
+		ev = ev || window.event;
+		var code = ev.which || ev.keyCode;
+		
+		if(ev.ctrlKey && code == 13) {
+			$("demo").innerHTML = $("demo").innerHTML + "----按下了Ctrl+Enter<br/>";
+		}
+		$("demo").innerHTML = $("demo").innerHTML + "------按下的键盘的键值----" + code + "<br/>";
+	}
+</script>
+ </body>
+</html>

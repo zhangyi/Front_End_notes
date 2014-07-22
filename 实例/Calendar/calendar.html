@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+  <title>QQ邮箱日历控件</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv='content-type' content='text/html;charset=utf-8' />
+  <script type='text/javascript' src='AECalendar.js'></script>
+<style type="text/css">
+* {margin:0; padding:0;}
+body {background-color:#fff; font-family:"lucida Grande",Verdana;font-size:12px;}
+
+/* calendar */
+.calendar { width:100%;}
+.calendar td { font-family:Tahoma,Arial,Verdana;border-collapse:collapse;text-align:right;}
+.calendar .title_year { padding:4px 0;width:100%;text-align:center;border-width:0 0 1px 0;}
+.calendar .selecter {margin:0 8px;}
+.calendar .selecter  img { cursor:pointer;margin:0 2px; } 
+.calendar .datelist { background:#fff; }
+.calendar .day { font:normal 11px Tahoma;border:1px solid #f2f4f6;border-width:0 1px 1px 0;padding:2px 4px 2px;background-repeat:no-repeat;background-position:right top; }
+.calendar .week_title{border-width:0 0 1px 0; text-align:center; padding:4px 2px 2px; cursor:default;}
+.calendar .hover { border-color:#ccc;padding:1px 3px 3px 1px; }
+.calendar .normalday { cursor:pointer;}
+.calendar .today { background-color:#727272;color:#fff;}
+.calendar .invalidateday { color:#e0e0e0; }
+.calendar .remind { background-image:url(images/bg_remind_enable.gif); }
+.calendar .remind_expired { background-image:url(images/bg_remind_disable.gif); }
+
+.pointer {cursor:pointer;}
+.attbg {background:none repeat scroll 0 0 #E8EDF4;}
+.fn_list {background:none repeat scroll 0 0 #3B5998; color:#fff;}
+/* calendar end */
+</style>
+ </head>
+
+ <body>
+
+ <div id="calendar_div" style="margin:20px auto;width:168px; border:1px solid #c8cfda; background-color:#e8edf4;" class="bd"></div>
+ <script type="text/javascript">
+/**
+ * 符合条件则执行指定的函数
+ * 
+ * @param {Object} termFn 条件函数
+ * @param {Object} execFn  执行函数
+ * @param {Number|Null} freq   检测频率
+ * @param {Number|Null}	timeout 超时时间
+ */
+function waitFor(termFn, execFn, freq, timeout) {
+	var index = 0,
+		freq = freq || 500,
+		count = (timeout || 10*500) / freq;
+	
+	function checkFn(flag) {
+		try {
+			execFn(flag);
+		} catch(ex) {
+			debug(ex);
+		}
+	}
+	
+	(function() {
+		try {
+			if (termFn()) {
+				return checkFn(true);
+			}
+		} catch(ex) {
+			
+		}
+		
+		if (index++ > count) {
+			return checkFn(false);
+		}
+		
+		setTimeout(arguments.callee, freq);
+	})();
+}
+
+new AECalendar({
+    dom: document.getElementById("calendar_div"),
+    rankYear: [2001, 2015],
+    date: new Date(),
+    onclick: function(year, month, day, elem) {
+		alert(year + '--' + month + '--' + day + '---' + elem.outerHTML);
+	},
+    onspecaildate: function(year, month, day) {}
+});
+</script>
+ </body>
+</html>

@@ -1,0 +1,19 @@
+table,th,td{
+	font:12px/1.6 Verdana, Arial, Helvetica, sans-serif;
+}
+html .postList tbody td{
+	height:1.9em;
+}
+html .hide{
+	display:none;
+}
+html .postList,html #calendar table{
+	width: auto;
+}
+html .postList .category{width:8em;}
+html .postList .date{
+	width:8em;
+	font-size:11px;
+	font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+html .postList .poster{width:7em;}

@@ -1,0 +1,39 @@
+
+   body{padding:0;margin:0 auto;text-align:left;font-size:12px;font-family:"Arial"}
+
+   /*容器 外框*/
+   #container{padding:0;margin:0;background:blue url('./pop_2.gif') ;width:260px;height:230px;overflow:hidden;}
+   
+   /*头部*/
+   #header{padding:0;margin:0;height:26px;background-color:red}
+   #header .headerTitle{float:left;font-size:12px;color:#ffffff;font-weight:bold;line-height:20px;padding-top:5px;;text-indent:28px;background:green}
+   /*关闭按钮*/
+   #header span{ float:right;width:24px;height:26px;background:yellow url('./pop_2.gif') -120px -232px;cursor:pointer;overflow:hidden;}
+
+   /*内容*/
+   #contentW{padding:0;margin:0 auto;width:254px;height:201px;overflow:hidden;}
+   #content{padding:10px 12px;background:#f0f0f0;}
+
+   #content #title{color:#666666; padding-bottom:5px;padding-top:0px;background:#FF00FF;}
+
+   #content #ifrom{background:#800080}
+   /*问题*/
+   #content #ifrom #question{font-size:14px;color:#219EE7;font-weight:bold;padding:5px 0 10px 0;background:#9090FF}
+   #content #ifrom #question a{font-size:14px;color:#219EE7;}
+
+   form{margin:0px;padding:0px;} 
+   /*答案选项列表*/
+   #content #ifrom form ul{padding:0px;margin:0px;list-style:none;;background:#0099FF}
+   #content #ifrom form ul li{padding:2px 0;margin:0px;list-style:none;cursor:pointer;}
+
+   /*按钮*/
+   #content #ifrom #sb{padding-top:32px; }
+   #content #ifrom #sb button{width:95px;height:33px;background:#CC99FF url('./pop_2.gif') 0px -240px;
+				border:0px;font-size:14px;color:#ffffff;
+				font-weight:bold;
+				cursor:pointer;
+				}
+   /*下一题*/
+   #content #nextq{color:#219EE7;background:#CCFF99;}
+   #content #nextq #nextqTitle{padding-top:10px;}
+   #content #nextq a{color:#219EE7;line-height:16px;}

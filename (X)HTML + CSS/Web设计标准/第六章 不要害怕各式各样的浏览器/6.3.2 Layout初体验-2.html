@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>The IE6 Three Pixel Text-Jog</title>
+<style type="text/css">
+
+#floatbox{
+	float:left;
+	width:70px;
+	height:120px;
+	border:6px #68f solid
+}
+#textwrapper{
+	border:3px #000 solid;
+}
+#jog-box{
+	margin-left:90px; 
+	border:3px #f66 solid;
+}
+/*\*/
+* html #textwrapper,* html #jog-box{height:1%;}
+/**/
+</style>
+</head>
+
+<body>
+
+<div id="floatbox">浮动元素</div>
+
+跟在浮动元素后面的文字
+
+<p id="textwrapper"> 
+这个多了个容器<br />还给这个容器加了边框
+</p>
+
+<div id="jog-box"> 
+这个容器多了margin-left<br />传说中的测试文字<br />传说中的测试文字
+</div>
+
+</body>
+</html>

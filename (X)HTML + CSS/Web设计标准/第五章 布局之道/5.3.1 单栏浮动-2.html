@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>一栏固定宽度，一栏自适应宽度之单栏浮动</title>
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	text-align:center;
+	padding:10px;
+}
+#wrapper{
+	width:100%;
+	margin:0 auto;
+	text-align:left;
+}
+#header{
+	height:120px;
+	background-color:#26566E;
+}
+#main{}
+#content{
+	margin:0 200px 0 0;
+	background-color:#ccc;
+}
+#sidebar{
+	float:right;
+	width:200px;
+	background-color:#8FAEBE;
+}
+#footer{
+	clear:both;
+	height:80px;
+	background-color:#688B9A;
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+	<div id="header">页头部分</div>
+
+	<div id="main">
+		<div id="sidebar">主体的侧栏部分</div>
+		<div id="content">主体的内容部分 - 传说中的测试文字 传说中的测试文字 传说中的测试文字</div>
+		
+	</div>
+	<div id="footer">页底部分</div>
+</div>
+</body>
+</html>

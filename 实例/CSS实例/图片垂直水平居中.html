@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>图片垂直水平居中</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <style type="text/css">
+	* {margin:0; padding:0;}
+	ul, li{list-style:none;}
+	body {background-color:#fff;}
+
+	.pic_center, .pic_center_2 {overflow:hidden; width:800px;}
+	.pic_center li{float:left; width:150px; height:150px; text-align:center;line-height:150px; font-size:125px;}
+	.pic_center li img{vertical-align:middle;}
+	
+	.pic_center_2 {margin-top:50px;}
+	.pic_center_2 li {height:150px; width:150px; padding:13px 0; float:left; text-align:center; margin-right:10px; margin-bottom:10px; border:1px solid #beceeb; font-size:0;}
+	.pic_center_2 li img{vertical-align:middle;}
+	.pic_center_2 li img.alpha_img {height:100%; width:1px;}
+	.pic_center_2 li span {display:block;}
+	
+	.pic_center_3 {clear:both; margin-top:30px; border:1px solid red;}
+	.pic_center_3 a{display:inline-block; width:1.2em; font-size:128px; text-align:center; vertical-align:middle;}
+	.pic_center_3 a img{vertical-align:middle; padding:2px; border:1px solid #beceeb;}
+  </style>
+ </head>
+
+ <body>
+  <ul class="pic_center">
+	<li><img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg" /></li>
+	<li><img src="http://image.zhangxinxu.com/image/study/s/s128/mm2.jpg" /></li>
+	<li><img src="http://image.zhangxinxu.com/image/study/s/s128/mm3.jpg" /></li>
+	<li><img src="http://image.zhangxinxu.com/image/study/s/s128/mm4.jpg" /></li>
+	<li><img src="http://image.zhangxinxu.com/image/study/s/s128/mm5.jpg" /></li>
+	<li><img src="http://image.zhangxinxu.com/image/study/s/s128/mm6.jpg" /></li>
+  </ul>
+
+  <ul class="pic_center_2">
+	<li>
+		<img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg" />
+		<img src="images/1px.gif" class="alpha_img"/>
+		<span>1111</span>
+	</li>
+	<li>
+		<img src="http://image.zhangxinxu.com/image/study/s/s128/mm2.jpg" />
+		<img src="images/1px.gif" class="alpha_img"/>
+		<span>2222</span>
+	</li>
+	<li>
+		<img src="http://image.zhangxinxu.com/image/study/s/s128/mm3.jpg" />
+		<img src="images/1px.gif" class="alpha_img"/>
+		<span>3333</span>
+	</li>
+	<li>
+		<img src="http://image.zhangxinxu.com/image/study/s/s128/mm4.jpg" />
+		<img src="images/1px.gif" class="alpha_img"/>
+		<span>4444</span>
+	</li>
+	<li>
+		<img src="http://image.zhangxinxu.com/image/study/s/s128/mm5.jpg" />
+		<img src="images/1px.gif" class="alpha_img"/>
+		<span>5555</span>
+	</li>
+	<li>
+		<img src="http://image.zhangxinxu.com/image/study/s/s128/mm6.jpg" />
+		<img src="images/1px.gif" />
+		666
+	</li>
+  </ul>
+
+  <div class="pic_center_3">
+	<a href="javascript:;">
+		<img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg" />
+	</a>
+	<a href="javascript:;">
+		<img src="http://image.zhangxinxu.com/image/study/s/s128/mm2.jpg" />
+	</a>
+  </div>
+
+ </body>
+</html>

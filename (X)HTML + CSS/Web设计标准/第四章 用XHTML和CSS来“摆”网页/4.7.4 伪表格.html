@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>一份列表</title>
+<style type="text/css">
+ol.news{
+	width:400px;/*装饰用的~只限显示的数据总宽度 */
+	list-style-type :none;/*去掉列表数据*/
+	border-top:2px #666 solid;
+	padding:0;
+	margin:0;
+}
+ol.news li{
+	text-align:right;/* 把文本右对齐,主要的作用是把时间放在右边*/
+	padding:3px 6px;
+	border-bottom:1px #666 solid;
+	
+}
+ol.news li.odd{
+	background-color:#efefef;
+}
+ol.news li a{
+	float:left;
+	text-align:left;/* 文本左对齐,可选~保证更多的浏览器是左对齐*/
+}
+
+</style>
+</head>
+
+<body>
+
+<ol class="news">
+    <li class="odd"><a href="#" title="…">晚上我没吃饭</a> 2-13</li>
+    <li class="even"><a href="#" title="…">今天是中国的情人节,要一个人过</a> 2-12</li>
+    <li class="odd"><a href="#" title="…">下午朋友来看我</a> 2-11</li>
+    <li class="even"><a href="#" title="… ">^_^ 发工资拉,</a> 2-10</li>
+    <li class="odd"><a href="#" title="...">...........</a> ....</li>
+</ol>
+
+
+</body>
+</html>

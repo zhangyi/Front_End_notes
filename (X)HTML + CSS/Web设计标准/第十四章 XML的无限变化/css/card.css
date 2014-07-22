@@ -1,0 +1,32 @@
+/* CSS Document */
+card{
+	display:block;
+	width:20em;
+	margin:10px;
+	padding:10px;
+	border:2px #999 solid;
+	font:85%/1.6em Verdana, Arial, Helvetica, sans-serif;
+}
+card *{
+	display: block;
+}
+card nickname{
+	border-bottom:2px #ccc solid;
+	padding-bottom:4px;
+	margin-bottom:4px;
+}
+card nickname:before{
+content:"站长昵称：";
+}
+card name:before{
+content:"网站名称：";
+}
+card url:before{
+content:"网站地址：";
+}
+card description:before{
+content:"网站描述：";
+}
+card email:before{
+content:"电子邮件：";
+}

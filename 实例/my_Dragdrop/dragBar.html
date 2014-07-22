@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<style type="text/css">
+	*{margin:0;padding:0}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>DragTest</title>
+	<script src="js/silverna-packs.js"></script>
+	<script>
+//	function test() {
+//		var bav = new core.web.widgets.adorners.behaviors.DragBehavior();
+//		bav.addPanel($$("test"));
+//		bav.addKnobs($$("bar"));
+//		bav.active();
+//	}
+	</script>
+</head>
+<body style="border:solid 1px black;width:500px;height:500px;margin:0 auto;margin-top:50px;">
+
+<div id ="test" style="border: solid 1px #3377cc; width:100px; height:100px;background:#3377CC;position:absolute">
+	<div id = "bar" style="background-color:gray;cursor:move;">movebar</div>
+	<div style="height:100%;">abc</div>
+</div>
+
+<script type="text/javascript" src="js/core.js"></script>
+<script type="text/javascript" src="js/other.js"></script>
+<script type="text/javascript" src="js/dragdrop.js"></script>
+<script type="text/javascript">
+	var bar = GD.ui.DragDrop.registerDragdropHandler("bar", "test", {
+		ghost : 1
+	});
+	bar.onStartDrag = function() {
+		
+	}
+	bar.onDoDrag = function() {
+		
+	}
+	bar.onEndDrag = function() {
+		
+	}
+</script>
+</body>

@@ -1,0 +1,6 @@
+/*html .hide{
+	display:none
+}*/
+html #photoShow li a:hover img,html #photoShow li a:active img{
+	border:2px #FF0084 solid;
+}

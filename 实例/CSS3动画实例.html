@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>CSS3动画实例</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv='content-type' content='text/html;charset=utf-8' />
+ 
+ <style type="text/css">
+#blah { -webkit-transition: all .3s ease-in-out; }
+#blah:hover { -webkit-transform: scale(1.5); }
+.ads{-webkit-transition: all 0.2s ease-out; opacity:0.5;}
+.ads:hover {-webkit-box-shadow:0 0 10px #000000; opacity:1;}
+.border{-webkit-transition: all 0.2s ease-out; border:10px solid #FFF000;}
+.border:hover { border-width:20px}
+a.link:link, a.link:visited {color: blue;-webkit-transition: color .25s linear .1s;transition: color .25s linear .1s;}
+a.link:hover {color: red;-webkit-transition: color .25s linear;transition: color .25s linear; }
+a.link2:link, a.link2:visited {color: blue;-webkit-transition: color .25s linear .1s;transition: color .25s linear .1s;}
+a.link2:hover {color: red; background-color:#FF0;-webkit-transition: color .25s linear , background-color 1s linear;transition: color .25s linear,background-color:#FF0 0.3s ease-in-out;}
+
+.arrow { -webkit-transition: all 1s ease-in-out;}
+.arrow:hover  {-webkit-transform: rotate(720deg);}
+.arrow-js { -webkit-transition: all 1s ease-in-out;}
+#nudge{-webkit-transition-property:color,background-color,padding-left;-webkit-transition-duration:500ms,500ms,500ms}
+#nudge:hover{background-color:#efefef;color:#333;padding-left:50px}
+ </style>
+
+ </head>
+
+ <body>
+  
+<div style="width:1000px; margin:40px auto 0"> 
+  <div id="blah" style=" background-color:#666; width:500px; height:30px; color:#FFF; line-height:30px; text-align: center; margin:0 auto">放大效果</div> 
+  <div class="ads" style=" background-color:#666; width:500px; height:30px; color:#FFF; line-height:30px; text-align: center; margin:50px auto 0">渐入效果</div> 
+  <div class="border" style=" background-color:#666; width:500px; height:30px; color:#FFF; line-height:30px; text-align: center; margin:50px auto 0">修改边框效果</div> 
+  <div class="arrow" style=" background-color:#666; width:100px; height:100px; color:#FFF; line-height:30px; text-align: center; margin:50px auto 0">旋转效果</div> 
+  <div class="arrow-js" style=" background-color:#666; width:100px; height:100px; color:#FFF; line-height:30px; text-align: center; margin:50px auto 0" onmouseover="this.style.webkitTransform='rotate(720deg)'" onmouseout="this.style.webkitTransform=''"><span class="arrow" style=" background-color:#666; width:100px; height:100px; color:#FFF; line-height:30px; text-align: center; margin:50px auto 0">旋转效果</span>（js触发css3）</div> 
+  <div id="nudge" style="  margin:50px auto 0; border:5px solid #666; line-height:30px">文本移动背景变化效果（多重效果）</div> 
+  <div style=" background-color:#efefef; width:500px; height:30px; color:#FFF; line-height:30px; text-align: center; margin:50px auto 0"><a href="#" class="link"><strong>链接文本变色</strong></a></div> 
+  <div style=" background-color:#efefef; width:500px; height:30px; color:#FFF; line-height:30px; text-align: center; margin:50px auto 0"><a href="#" class="link2"><strong>。。。。</strong></a>）</div> 
+</div> 
+
+ </body>
+</html>

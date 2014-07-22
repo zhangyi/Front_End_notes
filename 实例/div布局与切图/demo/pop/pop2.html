@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+ <HEAD>
+  <TITLE> pop </TITLE>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+ </HEAD>
+
+ <BODY>
+
+<div id="container">
+	<div id="header">
+		<div class="headerTitle">金山词霸今日更新</div><span>关闭</span>
+		<div style="clear:both;"></div>
+	</div><!-- end header-->
+   <div id="contentW">
+		<div id="content">
+		    <div id="title">爱词霸猜猜看</div>
+			<div id="ifrom">
+			
+				<form id="f2" style="display:none" action=""  method="post" target="_blank">
+				</form>
+
+				<div id="question" >
+					<a href="http://guess.dj.iciba.com/index.php?a=other&guess_id=116" target="_blank" id="Qanswer">He is a brown-nose.</a>的意思是？
+				</div>
+				<form action="http://guess.dj.iciba.com/index.php"   method="get" target="_blank" id="answer" style="float:left">
+					<input type="hidden" name="a" value="answer" />
+					<input type="hidden" name="guess_id" value="116" />
+					<input type="hidden" name="next_id" value="131" />
+					<input type="hidden" name="answer" id="answerV" value="-1">
+					<ul>
+						<li onclick="javascript:answerQ('a1');">
+							<INPUT TYPE="checkbox" NAME="answerS" value="346"  id="a1"><span>他是个马屁精。</span>
+						</li>
+						<li onclick="javascript:answerQ('a2');">
+							<INPUT TYPE="checkbox" NAME="answerS"  value="348"  id="a2"/><span>他的鼻子是棕色的。</span>
+						</li>
+						<li onclick="javascript:answerQ('a3');">
+							<INPUT TYPE="checkbox" NAME="answerS" value="347"  id="a3"/><span>他是个严谨的人。</span>
+						</li>
+					</ul>
+				</form>
+				<div id="sb" style="float:right;"> <button onclick="javascript:tsubmit()">提交答案</button></div>
+				<div style="clear:both;"></div>
+			</div><!-- end ifrom  -->
+
+			<div id="nextq">
+			   <div id="nextqTitle">下一题:</div>
+			   <div id="nextqContent"><a href="http://guess.dj.iciba.com/index.php?a=other&guess_id=118" target="_blank">Angela is a man of a woman.</a>的意思是？</div>
+			</div><!-- end nextq-->
+
+		</div><!-- end content-->
+   </div><!-- end contentW-->
+</div><!-- end container-->
+
+
+ <div style="padding:40px;padding:0 auto;">
+	<INPUT TYPE="radio" NAME="a" onclick="changCss(1);" checked>华丽的外套
+	<INPUT TYPE="radio" NAME="a" onclick="changCss(2);">简朴(颜色演示)
+ </div>
+
+ </BODY>
+
+ 
+  <script>
+  document.write('<link href="pop.css" rel="stylesheet" type="text/css" id="cssInterface"/>');
+  function changCss(type){
+     css=document.getElementById('cssInterface');
+	 href="pop.css";
+	 if(type=='2') href="pop_2.css";
+	 //alert(css.href);
+	 css.href=href;
+
+  }
+  function answerQ(div){
+	//alert(id.value);
+	id= document.getElementById(div);
+	document.getElementById('answerV').value= id.value;
+	var objs= document.getElementsByTagName('INPUT');
+	//alert(id.checked);
+	for(i=0;i<objs.length;i++){
+		objs[i].checked=false;
+	}
+	id.checked=true;
+  }
+  function tsubmit(){	
+	
+    if( document.getElementById('answerV').value=="-1"){		
+		document.getElementById('f2').action= document.getElementById('Qanswer').href;
+		document.getElementById('f2').submit();
+	}else{		 
+		document.getElementById('answer').submit();
+	}
+	//Qanswer
+  }
+  </script>
+</HTML>

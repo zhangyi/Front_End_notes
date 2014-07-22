@@ -1,0 +1,64 @@
+/* CSS Document by aoao */
+*{
+	margin:0; padding:0;
+}
+body{
+	font:12px/1.6 Verdana, Arial, Helvetica, sans-serif;
+	color:#555;
+	background-color:#FFF;
+	background:#E2D9CA url(../images/bg.jpg) repeat-y center top;
+	text-align:center;
+}
+a:link{
+	color:#0033CF;
+}
+a:visited{
+	color:#333;
+}
+a:hover,a:focus,a:active{
+	color:#FF0084;
+	text-decoration:none
+}
+
+.hide{
+	overflow:hidden;
+	height:0px;
+	display:block;
+}
+#wrapper{
+	width:100%;
+	margin:0 auto;
+	background:url(../images/header_bg.jpg) no-repeat center top;
+}
+#header,#main,#footer{
+	width:730px;
+	margin:0 auto;
+	text-align:left;
+}
+#logo{
+	padding:5px 0 0 20px
+}
+#skip{
+	position:absolute;
+	z-index:3;
+	left:0;
+	top:-24px;
+	width:100%;
+	height:26px;
+	line-height:26px;
+	text-align:center;
+	background:#FAFBFD url(../images/skip_bg.gif) repeat-x 0 100%;
+	opacity:.8;
+	-moz-opacity:.8;
+	-khtml-opacity:.8;
+	filter:alpha(opacity=80);	
+}
+#skip:hover{
+	top:0;
+}
+#footer{
+	margin:20px auto;
+	padding:20px 0;
+	background:url(../images/footer_bg.jpg) no-repeat 50% 0%;
+	text-align:center;
+}

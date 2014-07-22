@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Google+相册展示</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+
+  <style type='text/css'>
+	.pw{position:relative;vertical-align:top}
+	.pw:active{outline:0}
+	.rK{-webkit-box-shadow:0 1px 2px #aaa;-moz-box-shadow:0 1px 2px #aaa;box-shadow:0 1px 2px #aaa;background-color:#fff;border:5px solid #f3f3f3;cursor:pointer}
+	
+	.uK{-webkit-box-shadow:1px 1px 2px #666;-moz-box-shadow:1px 1px 2px #666;box-shadow:1px 1px 2px #666;left:0;position:absolute;top:0}
+	
+	.vK{z-index:4}
+	.wK{transform:translate(5px,1px) scale(.97);z-index:3;-moz-transform:translate(5px,1px) scale(.97);-o-transform:translate(5px,1px) scale(.97);-webkit-transform:translate(5px,1px) scale(.97)}
+	.xK{transform:translate(10px,2px) scale(.94);z-index:2;-moz-transform:translate(10px,2px) scale(.94);-o-transform:translate(10px,2px) scale(.94);-webkit-transform:translate(10px,2px) scale(.94)}
+	.yK{z-index:1}
+	
+	.pw img {width:205px; height:205px;}
+
+	#tipInfo {padding-left:20px;}
+	#picContainer {width: 227px; position: absolute; z-index: 5; display:none;}
+  </style>
+ </head>
+
+ <body>
+
+<button onclick="openAnim()">执行显示动画</button>
+<button onclick="closeAnim()">执行关于动画</button>
+<span id="tipInfo"></span>
+
+<div class="pw" style="width: 227px; -webkit-user-select: none; margin:120px;" tabindex="0" id="picList">
+	<img class="rK uK vK" src="http://1.meteoric.sinaapp.com/images/IMG_0506.jpg" />
+	<img class="rK uK wK" src="http://1.meteoric.sinaapp.com/images/IMG_0516.jpg" />
+	<img class="rK uK xK" src="http://1.meteoric.sinaapp.com/images/IMG_0548.jpg" />
+	<img class="rK uK yK" src="http://1.meteoric.sinaapp.com/images/IMG_0506.jpg" />
+</div>
+
+
+<div class="pw" id="picContainer">
+	<img class="rK uK vK" src="http://1.meteoric.sinaapp.com/images/IMG_0506.jpg" />
+	<img class="rK uK wK" src="http://1.meteoric.sinaapp.com/images/IMG_0516.jpg" />
+	<img class="rK uK xK" src="http://1.meteoric.sinaapp.com/images/IMG_0548.jpg" />
+	<img class="rK uK yK" src="http://1.meteoric.sinaapp.com/images/IMG_0506.jpg" />
+</div>
+
+
+
+<script type="text/javascript">
+//style="-webkit-transform: rotate(-6deg) translate(-72px, -4px) scale(1.0414634146341464); "
+	
+function getEl(id) {
+	return typeof id === "string" ? document.getElementById(id) : id;
+}
+/**
+* @fileoverview Tween
+*/
+function Tween(C, B, A) {
+	if (C) {
+		this.time = parseInt(C * 1000)
+	}
+	if (B) {
+		this.transform = B
+	}
+	if (A) {
+		this.interval = A
+	}
+}
+Tween.prototype = {
+	interval: 40,
+	duration: 1000,
+	transform: function(A) {
+		return 1 - Math.pow(1 - A, 3)
+	},
+	timer: null,
+	isRun: false,
+	clear: function() {
+		if (this.timer) {
+			clearInterval(this.timer);
+			this.timer = null;
+		}
+	},
+	start: function() {
+		this.clear();
+
+		this.timer = this._start.apply(this, arguments);
+	},
+	_start : function(A, E, D) {
+		
+		D = D || this.transform;
+
+		function H() {
+			I += C;
+			var J = I / F;
+			if (J >= 1) {
+				A(1);
+				E && E();
+				clearInterval(B)
+			} else {
+				A(D(J) / G)
+			}
+		}
+
+		var C = this.interval;
+		var F = this.duration;
+		var G = D(1);
+		var I = 0;
+		var B = setInterval(H, C);
+
+		return B;
+	}
+}
+
+function getOffset(el) {
+	var elem = getEl(el);
+	var l = 0;
+	var t = 0;
+
+	while (elem) {
+		l += elem.offsetLeft;
+		t += elem.offsetTop;
+
+		elem = elem.offsetParent;
+	}
+
+	return [l, t];
+}
+
+var tween = new Tween();
+var imgArr = getEl("picContainer").getElementsByTagName("img");
+var ua = navigator.userAgent;
+var isWebkit = /AppleWebKit/.test(ua);
+var isFF = /Firefox/.test(ua);
+var isOpera = /Opera/.test(ua);
+
+tween.duration = 300;
+
+function openAnim() {
+	getEl("tipInfo").innerHTML = "";
+	getEl("picContainer").style.display = "block";
+
+	function M(I) {
+		var a = isWebkit ? "WebkitTransform" : "MozTransform";
+		a = isOpera ? "OTransform" : a;
+
+		imgArr[0].style[a] = "rotate("+ -6 * I +"deg) translate("+ -72 * I +"px, "+ -4 * I +"px) scale(1)";
+		imgArr[1].style[a] = "rotate(0deg) translate(0px, "+ -4 * I +"px) scale(1)";
+		imgArr[2].style[a] = "rotate("+ 6 * I +"deg) translate("+ 72 * I +"px, "+ 4 * I +"px) scale(1)";
+
+		getEl("tipInfo").innerHTML = "显示动画正在执行...";
+	}
+
+	function N() {
+		getEl("tipInfo").innerHTML = "显示动画执行完成";
+
+		getEl("picContainer").onmouseout = closeAnim;
+		getEl("picList").onmouseover = null;
+
+		getEl("picContainer").onmousemove = function() {
+			tween.clear();
+		}
+	}
+
+	tween.start(M, N);
+}
+
+function closeAnim() {
+	getEl("tipInfo").innerHTML = "";
+
+	function M(I) {
+		I = 1 - I;
+		
+		var a = isWebkit ? "WebkitTransform" : "MozTransform";
+		a = isOpera ? "OTransform" : a;
+
+		imgArr[0].style[a] = "rotate("+ -6 * I +"deg) translate("+ -72 * I +"px, "+ -4 * I +"px) scale(1)";
+		imgArr[1].style[a] = "rotate(0deg) translate("+(5 - 5 * I)+"px, "+ (1 + -5 * I) +"px) scale(0.97)";
+		imgArr[2].style[a] = "rotate("+ 6 * I +"deg) translate("+ (10 + 62 * I) +"px, "+ (2 + 2 * I) +"px) scale(0.94)";
+
+		getEl("tipInfo").innerHTML = "关闭动画正在执行...";
+	}
+
+	function N() {
+		getEl("tipInfo").innerHTML = "关闭动画执行完成";
+
+		getEl("picContainer").style.display = "none";
+
+		getEl("picContainer").onmouseout = null;
+		getEl("picList").onmouseover = openAnim;
+		getEl("picContainer").onmousemove = null;
+	}
+
+	tween.start(M, N);
+}
+
+!(function() {
+	var arr = getOffset("picList");
+	var elem = getEl("picContainer");
+
+	elem.style.left = arr[0] + 'px';
+	elem.style.top = arr[1] + 'px';
+
+	if (!isWebkit && !isFF && !isOpera) {
+		var btns = document.getElementsByTagName("button");
+		for (var i = 0, len = btns.length; i < len; i++) {
+			btns[i].disabled = true;
+		}
+	} else {
+		getEl("picList").onmouseover = openAnim;
+	}
+})();
+
+</script>
+
+ </body>
+</html>

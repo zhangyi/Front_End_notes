@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="xsl/14.2.1.xsl" type="text/xsl" ?>
+<card>
+	<nickname>嗷嗷</nickname>
+	<website>
+		<name>样式之美</name>
+		<url>http://www.aoao.org.cn/</url>
+		<description>关于Web标准的一些学习记录</description>
+	</website>
+	<email>aoao@live.com</email>
+</card>
